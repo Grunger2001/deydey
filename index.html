@@ -185,13 +185,13 @@
       <!-- Coin Counter & Sound Controls -->
       <div class="flex items-center space-x-4">
         <!-- Coin Counter -->
-        <button id="hud-coin-btn" onclick="triggerCoinClick(event)" class="flex items-center bg-gray-900 border-2 border-yellow-400 px-2.5 py-1 rounded hover:bg-yellow-900/40 transition">
+        <button id="hud-coin-btn" onclick="triggerCoinClick(event)" class="flex items-center bg-gray-900 border-2 border-yellow-400 px-2.5 py-1 rounded hover:bg-yellow-900/40 transition cursor-pointer">
           <span class="text-yellow-400 mr-1.5 text-base">🪙</span>
           <span id="coin-count" class="text-yellow-300">x00</span>
         </button>
 
         <!-- Sound Toggle Button -->
-        <button id="sound-btn" onclick="toggleAudio()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 border-2 border-white rounded shadow-pixel flex items-center space-x-1.5 transition active:translate-y-0.5">
+        <button id="sound-btn" onclick="toggleAudio()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 border-2 border-white rounded shadow-pixel flex items-center space-x-1.5 transition active:translate-y-0.5 cursor-pointer">
           <i id="sound-icon" class="fas fa-volume-up text-xs"></i>
           <span id="sound-text" class="hidden sm:inline">SOUND ON</span>
         </button>
@@ -247,7 +247,6 @@
 
     </div>
 
-    <!-- RIGHT SIDE FLOATING VECTOR GRAPHICS -->
     <div class="hidden xl:flex flex-col space-y-12 absolute -right-28 top-16 w-24 pointer-events-auto">
       
       <!-- Super Star Vector -->
@@ -332,11 +331,11 @@
               </div>
             </div>
 
-            <!-- ================================================================= -->
-            <!-- REPLACE src="" BELOW WITH DEYDEY'S PHOTO FILE PATH OR IMAGE URL  -->
-            <!-- Example: src="deydey.jpg" or src="images/deydey.png"              -->
-            <!-- ================================================================= -->
-            <img id="deydeyPhoto" src="" alt="DeyDey" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
+            <!-- ===================================================================== -->
+            <!-- REPLACE src="" BELOW WITH YOUR DEYDEY PHOTO FILE PATH OR URL         -->
+            <!-- Example: src="deydey.jpg" or src="images/deydey.png"                 -->
+            <!-- ===================================================================== -->
+            <img id="deydeyPhoto" src="" alt="DeyDey 9th Birthday Photo" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
 
             <!-- Mario Cap Badge Overlay Accent -->
             <div class="absolute top-3 right-3 z-20 bg-red-600 border-2 border-black rounded-full w-10 h-10 flex items-center justify-center shadow-pixel">
@@ -356,7 +355,7 @@
 
       <div class="flex justify-center items-center space-x-3 sm:space-x-6 my-6">
         <!-- Question Block 1 -->
-        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group">
+        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group cursor-pointer">
           <span class="font-pixel text-black text-xl sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
           <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
           <div class="absolute top-1 right-1 w-1 h-1 bg-black"></div>
@@ -365,12 +364,12 @@
         </button>
 
         <!-- Main RSVP Primary Action Button -->
-        <a href="#rsvp-section" onclick="playAudio('jump')" class="inline-block bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-base px-6 py-4 rounded-xl border-4 border-black shadow-pixel-lg transform hover:-translate-y-0.5 active:translate-y-1 transition text-center uppercase tracking-wider">
+        <a href="#rsvp-section" onclick="playAudio('jump')" class="inline-block bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-base px-6 py-4 rounded-xl border-4 border-black shadow-pixel-lg transform hover:-translate-y-0.5 active:translate-y-1 transition text-center uppercase tracking-wider cursor-pointer">
           🎮 PRESS START TO RSVP
         </a>
 
         <!-- Question Block 2 -->
-        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group">
+        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group cursor-pointer">
           <span class="font-pixel text-black text-xl sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
           <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
           <div class="absolute top-1 right-1 w-1 h-1 bg-black"></div>
@@ -381,7 +380,7 @@
 
       <!-- DIRECT "WARP TO MAP" BUTTON FOR JOLLIBEE AGLIPAY -->
       <div class="text-center mb-8">
-        <a href="https://maps.google.com/?cid=12370298415881579048" target="_blank" rel="noopener noreferrer" onclick="playAudio('warp')" class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-black font-pixel text-xs sm:text-sm px-6 py-3.5 rounded-xl border-4 border-black shadow-pixel transition transform hover:scale-105 active:scale-95">
+        <a href="https://maps.google.com/?cid=12370298415881579048" target="_blank" rel="noopener noreferrer" onclick="playAudio('warp')" class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-black font-pixel text-xs sm:text-sm px-6 py-3.5 rounded-xl border-4 border-black shadow-pixel transition transform hover:scale-105 active:scale-95 cursor-pointer">
           <span class="text-lg">🏰</span>
           <span>WARP TO MAP (JOLLIBEE AGLIPAY)</span>
           <i class="fas fa-external-link-alt text-xs ml-1"></i>
@@ -469,13 +468,6 @@
           <p class="text-slate-600 text-sm mt-1">Confirm your attendance so we can reserve your party power-ups!</p>
         </div>
 
-        <!-- FORMSPREE EMAIL NOTIFICATION SETUP (OPTIONAL):
-             To receive RSVPs directly in your email inbox via Formspree:
-             1. Sign up for free at https://formspree.io
-             2. Create a form and copy your Form endpoint URL (e.g., https://formspree.io/f/xbbzyqpw)
-             3. Add action="https://formspree.io/f/YOUR_FORM_ID" method="POST" to the form tag below,
-                or set formspreeEndpoint in the JS script at the bottom of this file.
-        -->
         <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="max-w-xl mx-auto space-y-4">
           
           <!-- Player Name Input -->
@@ -519,7 +511,7 @@
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-pixel text-sm py-4 rounded-xl border-4 border-black shadow-pixel-lg transition transform active:translate-y-1 flex items-center justify-center space-x-2">
+          <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-pixel text-sm py-4 rounded-xl border-4 border-black shadow-pixel-lg transition transform active:translate-y-1 flex items-center justify-center space-x-2 cursor-pointer">
             <span>🚀 SUBMIT RSVP LEVEL DATA</span>
           </button>
 
@@ -536,7 +528,7 @@
           <p class="text-slate-600 text-xs sm:text-sm mt-1">See messages left by DeyDey's party friends!</p>
         </div>
 
-        <!-- Dynamic Guest Counter Stats Dashboard -->
+        <!-- Dynamic Guest Counter Stats Dashboard initialized at ZERO -->
         <div id="guest-counter-bar" class="max-w-lg mx-auto mb-6 bg-black text-white border-3 border-yellow-400 rounded-xl p-3 flex justify-around items-center font-pixel text-xs shadow-pixel">
           <div class="text-center">
             <span class="block text-green-400 text-lg font-bold" id="stat-attending">0</span>
@@ -555,14 +547,13 @@
         </div>
 
         <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Wishes rendered dynamically from localStorage -->
+          <!-- Wishes rendered dynamically from clean localStorage -->
         </div>
       </section>
 
     </div>
   </main>
 
-  <!-- CUSTOM RETRO CONFIRMATION MODAL (REPLACES ALERT) -->
   <div id="rsvp-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white border-4 border-black rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-pixel-yellow relative animate-bounce" style="animation-iteration-count: 1;">
       <div id="rsvp-modal-icon" class="w-16 h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel">
@@ -572,7 +563,7 @@
       <p id="rsvp-modal-text" class="text-slate-800 font-bold text-sm sm:text-base mb-6">
         Thank you! Your RSVP has been saved for DeyDey's party.
       </p>
-      <button onclick="closeRSVPModal()" class="w-full bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-sm py-3 rounded-xl border-3 border-black shadow-pixel uppercase">
+      <button onclick="closeRSVPModal()" class="w-full bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-sm py-3 rounded-xl border-3 border-black shadow-pixel uppercase cursor-pointer">
         CONTINUE GAME 🎮
       </button>
     </div>
@@ -589,7 +580,7 @@
   </footer>
 
   <script>
-    // Audio Context Setup (Synthesizes NES Retro SFX natively without external MP3 files)
+    /* Audio Context Setup (Synthesizes NES Retro SFX natively without external audio files) */
     let audioCtx = null;
     let isSoundOn = true;
     let coinScore = 0;
@@ -619,7 +610,6 @@
       }
     }
 
-    // Synth Retro Sound Generator
     function playAudio(type) {
       if (!isSoundOn) return;
       initAudio();
@@ -628,7 +618,6 @@
       const now = audioCtx.currentTime;
 
       if (type === 'coin') {
-        // Classic Mario Coin sound (B5 then E6)
         const osc1 = audioCtx.createOscillator();
         const gain1 = audioCtx.createGain();
         osc1.type = 'square';
@@ -646,7 +635,6 @@
         osc1.stop(now + 0.35);
 
       } else if (type === 'jump') {
-        // Classic Jump pitch sweep
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'square';
@@ -664,7 +652,6 @@
         osc.stop(now + 0.15);
 
       } else if (type === 'warp') {
-        // Descending Pipe sound
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sawtooth';
@@ -682,7 +669,6 @@
         osc.stop(now + 0.3);
 
       } else if (type === '1up') {
-        // Classic 1UP Powerup Chime (E5, G5, E6, C6, D6, G6)
         const notes = [659.25, 783.99, 1318.51, 1046.50, 1174.66, 1567.98];
         notes.forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
@@ -701,7 +687,6 @@
         });
 
       } else if (type === 'gameover') {
-        // Game Over Pipe/Defeat Sound (descending square wave arpeggio)
         const notes = [400, 350, 300, 250, 200, 150];
         notes.forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
@@ -717,25 +702,6 @@
           
           osc.start(now + (i * 0.09));
           osc.stop(now + (i * 0.09) + 0.12);
-        });
-
-      } else if (type === 'fanfare') {
-        // 1UP Powerup Fanfare Arpeggio
-        const notes = [330, 392, 659, 523, 587, 784];
-        notes.forEach((freq, i) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'square';
-          osc.frequency.value = freq;
-          
-          gain.gain.setValueAtTime(0.12, now + (i * 0.06));
-          gain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.06) + 0.1);
-          
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          
-          osc.start(now + (i * 0.06));
-          osc.stop(now + (i * 0.06) + 0.1);
         });
       }
     }
@@ -758,24 +724,11 @@
       }
     }
 
-    const LOCAL_STORAGE_KEY = 'mario_deydey_party_rsvps';
+    // FRESH LOCALSTORAGE KEY: Wipes out cached mock entries (Daniel, Auntie Lisa, Uncle Mark) completely!
+    const LOCAL_STORAGE_KEY = 'deydey_mario_rsvps_v0_clean';
 
-    const defaultRSVPs = [
-      {
-        name: 'Auntie Lisa',
-        attendance: 'Attending',
-        guests: '2',
-        wish: 'Happy 9th Birthday DeyDey! So excited to celebrate with you at Jollibee!',
-        timestamp: new Date().toISOString()
-      },
-      {
-        name: 'Uncle Mark',
-        attendance: 'Attending',
-        guests: '1',
-        wish: 'Level 9 unlocked! Keep shining big boy DeyDey!',
-        timestamp: new Date().toISOString()
-      }
-    ];
+    // ABSOLUTE ZERO INITIAL DATA (100% EMPTY)
+    const defaultRSVPs = [];
 
     function getStoredRSVPs() {
       const data = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -808,36 +761,46 @@
       let totalGuestsCount = 0;
       let totalDeclinedCount = 0;
 
-      rsvps.forEach(item => {
-        const isAttending = item.attendance === 'Attending';
-        const numGuests = item.guests === '4+' ? 4 : (parseInt(item.guests) || 1);
-
-        if (isAttending) {
-          totalAttendingCount += 1;
-          totalGuestsCount += numGuests;
-        } else {
-          totalDeclinedCount += 1;
-        }
-
-        const card = document.createElement('div');
-        card.className = "bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative transition-all hover:-translate-y-0.5";
-        
-        const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
-        const badgeText = isAttending ? `READY (${item.guests} PLAYER${numGuests > 1 ? 'S' : ''})` : 'GAME OVER';
-        const avatarLetter = item.name ? item.name.charAt(0).toUpperCase() : '★';
-        const avatarBg = isAttending ? 'bg-red-600 text-white' : 'bg-gray-700 text-white';
-
-        card.innerHTML = `
-          <div class="flex items-center space-x-2 mb-2">
-            <div class="w-7 h-7 ${avatarBg} font-pixel text-[10px] rounded-full flex items-center justify-center border border-black font-bold">${escapeHTML(avatarLetter)}</div>
-            <span class="font-bold text-slate-900 text-sm">${escapeHTML(item.name)}</span>
-            <span class="text-[10px] ${badgeBg} font-pixel px-2 py-0.5 rounded ml-auto">${badgeText}</span>
+      if (rsvps.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-1 sm:col-span-2 bg-amber-50 border-3 border-dashed border-slate-400 rounded-xl p-8 text-center shadow-sm">
+            <div class="text-3xl mb-2 animate-bounce">🍄</div>
+            <p class="font-pixel text-slate-800 text-xs sm:text-sm font-bold">NO RSVPS SUBMITTED YET</p>
+            <p class="text-slate-600 text-xs mt-1">Be the first player to join DeyDey's party crew!</p>
           </div>
-          <p class="text-xs text-slate-700 italic">"${escapeHTML(item.wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
         `;
+      } else {
+        rsvps.forEach(item => {
+          const isAttending = item.attendance === 'Attending';
+          const numGuests = item.guests === '4+' ? 4 : (parseInt(item.guests) || 1);
 
-        container.appendChild(card);
-      });
+          if (isAttending) {
+            totalAttendingCount += 1;
+            totalGuestsCount += numGuests;
+          } else {
+            totalDeclinedCount += 1;
+          }
+
+          const card = document.createElement('div');
+          card.className = "bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative transition-all hover:-translate-y-0.5";
+          
+          const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
+          const badgeText = isAttending ? `READY (${item.guests} PLAYER${numGuests > 1 ? 'S' : ''})` : 'GAME OVER';
+          const avatarLetter = item.name ? item.name.charAt(0).toUpperCase() : '★';
+          const avatarBg = isAttending ? 'bg-red-600 text-white' : 'bg-gray-700 text-white';
+
+          card.innerHTML = `
+            <div class="flex items-center space-x-2 mb-2">
+              <div class="w-7 h-7 ${avatarBg} font-pixel text-[10px] rounded-full flex items-center justify-center border border-black font-bold">${escapeHTML(avatarLetter)}</div>
+              <span class="font-bold text-slate-900 text-sm">${escapeHTML(item.name)}</span>
+              <span class="text-[10px] ${badgeBg} font-pixel px-2 py-0.5 rounded ml-auto">${badgeText}</span>
+            </div>
+            <p class="text-xs text-slate-700 italic">"${escapeHTML(item.wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
+          `;
+
+          container.appendChild(card);
+        });
+      }
 
       // Update counters in guest counter bar
       const elAttending = document.getElementById('stat-attending');
@@ -856,7 +819,6 @@
       renderWishesAndStats();
     });
 
-    // Realtime Countdown Timer to October 18 @ 3:00 PM PST
     const targetDate = new Date("2026-10-18T15:00:00+08:00").getTime();
 
     function updateCountdown() {
@@ -890,7 +852,6 @@
       coinScore += 1;
       document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
 
-      // Create floating +100 coin text effect
       const rect = btn.getBoundingClientRect();
       const popup = document.createElement('div');
       popup.className = 'popup-coin font-pixel text-yellow-400 text-sm font-bold drop-shadow-[0_2px_0_#000]';
@@ -920,14 +881,12 @@
 
       const isAttending = attendance === 'Attending';
 
-      // Play retro audio sound
       if (isAttending) {
         playAudio('1up');
       } else {
         playAudio('gameover');
       }
 
-      // Save persistent RSVP object
       const rsvp = {
         name: name,
         attendance: attendance,
@@ -938,17 +897,6 @@
 
       saveRSVP(rsvp);
 
-      // Optional Formspree API Integration guide (if endpoint specified)
-      const formspreeEndpoint = ""; // Host can place "https://formspree.io/f/YOUR_FORM_ID" here if using JS fetch
-      if (formspreeEndpoint) {
-        fetch(formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(rsvp)
-        }).catch(err => console.log('Optional Formspree submission error:', err));
-      }
-
-      // Configure Retro Modal content
       const modalIcon = document.getElementById('rsvp-modal-icon');
       const modalTitle = document.getElementById('rsvp-modal-title');
       const modalText = document.getElementById('rsvp-modal-text');
@@ -967,10 +915,7 @@
         modalText.innerText = `Thanks for letting us know, ${name}. We'll miss you at DeyDey's 9th Birthday!`;
       }
 
-      // Reset form
       document.getElementById('rsvp-form').reset();
-
-      // Display custom retro modal
       document.getElementById('rsvp-modal').classList.remove('hidden');
     }
 
@@ -994,11 +939,3 @@
 
 </body>
 </html>
-```
-
-### Key Improvements Made:
-1. **Persistent LocalStorage Saving**: RSVPs are automatically saved to `localStorage` under `mario_deydey_party_rsvps` so submitted entries persist across page reloads.
-2. **Dynamic Guest Dashboard & Wishes Wall**: Submissions dynamically compute and display real-time player counts (`Attending`, `Total Guests`, and `Declined`) above the high score wishes grid.
-3. **8-bit Web Audio SFX**: Integrated a 1UP power-up sound chime for confirmed attendees and a classic 8-bit defeat sound for declines.
-4. **Retro Modal Alerts**: Displays tailored **"STAGE CLEAR! QUEST ACCEPTED 🏆"** or **"GAME OVER! QUEST DECLINED 👾"** retro confirmation modals without breaking visual style.
-5. **Formspree Setup Comments**: Added explicit setup comments in the HTML form and JavaScript logic for optional email notification routing via Formspree.
