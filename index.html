@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeyDey is Turning 9! | Super Mario World Birthday Party</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for Retro Pixel & Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for standard UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mario: {
+              red: '#e52521',
+              blue: '#0022f4',
+              sky: '#5c94fc',
+              yellow: '#fbd000',
+              green: '#43b047',
+              dark: '#1e1b18',
+              pipe: '#00a800',
+              pipeDark: '#006800',
+              brick: '#d04810',
+              gold: '#ffb700'
+            }
+          },
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace'],
+            sans: ['"Outfit"', 'sans-serif']
+          },
+          boxShadow: {
+            'pixel': '4px 4px 0px #000',
+            'pixel-lg': '8px 8px 0px #000',
+            'pixel-yellow': '0 0 20px rgba(251, 208, 0, 0.6)',
+            'gold-glow': '0 0 25px rgba(255, 215, 0, 0.8)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #5c94fc;
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* Floating retro cloud keyframes */
+    @keyframes floatCloud {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .animate-cloud-slow {
+      animation: floatCloud 38s linear infinite;
+    }
+
+    .animate-cloud-fast {
+      animation: floatCloud 24s linear infinite;
+    }
+
+    /* Floating element idle animation */
+    @keyframes bobble {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    .animate-bobble {
+      animation: bobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px #fbd000); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 16px #fbd000); }
+    }
+
+    .animate-star-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* Pixelated border styles */
+    .pixel-border-sm {
+      border: 4px solid #000;
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    .pixel-border-lg {
+      border: 6px solid #000;
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .gold-frame {
+      border: 6px solid #000;
+      outline: 4px solid #fbd000;
+      background: linear-gradient(135deg, #fff3a1 0%, #ffc000 100%);
+    }
+
+    /* Coin popup float animation */
+    @keyframes coinPopup {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      50% { opacity: 1; transform: translateY(-40px) scale(1.3); }
+      100% { opacity: 0; transform: translateY(-70px) scale(0.8); }
+    }
+
+    .popup-coin {
+      position: absolute;
+      animation: coinPopup 0.8s ease-out forwards;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fbd000;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-900 flex flex-col justify-between relative">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <!-- Big Sky Cloud 1 -->
+    <div class="absolute top-12 animate-cloud-slow opacity-80" style="left: -50px;">
+      <svg width="140" height="60" viewBox="0 0 140 60" fill="white">
+        <path d="M20 50 Q 20 20 45 20 Q 55 10 75 10 Q 95 10 105 25 Q 125 25 125 50 Z" />
+        <ellipse cx="40" cy="40" rx="20" ry="15" fill="white"/>
+        <ellipse cx="70" cy="35" rx="30" ry="20" fill="white"/>
+        <ellipse cx="105" cy="40" rx="22" ry="15" fill="white"/>
+      </svg>
+    </div>
+    
+    <!-- Big Sky Cloud 2 -->
+    <div class="absolute top-36 animate-cloud-fast opacity-70" style="left: 30%;">
+      <svg width="180" height="70" viewBox="0 0 180 70" fill="white">
+        <path d="M20 60 Q 20 30 50 30 Q 65 15 95 15 Q 125 15 135 30 Q 165 30 165 60 Z" />
+      </svg>
+    </div>
+
+    <!-- Distant Hills at Bottom -->
+    <div class="absolute bottom-0 w-full flex justify-between items-end opacity-40">
+      <svg width="220" height="90" viewBox="0 0 220 90" fill="#22c55e">
+        <path d="M0 90 Q 110 -10 220 90 Z"/>
+      </svg>
+      <svg width="300" height="120" viewBox="0 0 300 120" fill="#16a34a">
+        <path d="M0 120 Q 150 -20 300 120 Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-50 bg-black text-white border-b-4 border-yellow-400 px-3 py-2 shadow-pixel">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between text-xs sm:text-sm font-pixel gap-2">
+      
+      <!-- Mario World Badge -->
+      <div class="flex items-center space-x-2 text-yellow-300">
+        <svg class="w-5 h-5 animate-bounce" viewBox="0 0 100 100" fill="none">
+          <!-- Mini Super Mushroom SVG -->
+          <path d="M50 10 C25 10 10 30 10 50 C10 65 25 70 25 70 L75 70 C75 70 90 65 90 50 C90 30 75 10 50 10 Z" fill="#e52521"/>
+          <ellipse cx="32" cy="35" rx="8" ry="12" fill="white"/>
+          <ellipse cx="68" cy="35" rx="8" ry="12" fill="white"/>
+          <path d="M28 70 L28 90 C28 95 38 98 50 98 C62 98 72 95 72 90 L72 70 Z" fill="#fde047"/>
+          <ellipse cx="40" cy="80" rx="2" ry="5" fill="#000"/>
+          <ellipse cx="60" cy="80" rx="2" ry="5" fill="#000"/>
+        </svg>
+        <span class="tracking-wider">MARIO <span class="text-white">x</span> DEYDEY <span class="text-red-500">WORLD 9-0</span></span>
+      </div>
+
+      <!-- Coin Counter & Sound Controls -->
+      <div class="flex items-center space-x-4">
+        <!-- Coin Counter -->
+        <button id="hud-coin-btn" onclick="triggerCoinClick(event)" class="flex items-center bg-gray-900 border-2 border-yellow-400 px-2.5 py-1 rounded hover:bg-yellow-900/40 transition">
+          <span class="text-yellow-400 mr-1.5 text-base">🪙</span>
+          <span id="coin-count" class="text-yellow-300">x00</span>
+        </button>
+
+        <!-- Sound Toggle Button -->
+        <button id="sound-btn" onclick="toggleAudio()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 border-2 border-white rounded shadow-pixel flex items-center space-x-1.5 transition active:translate-y-0.5">
+          <i id="sound-icon" class="fas fa-volume-up text-xs"></i>
+          <span id="sound-text" class="hidden sm:inline">SOUND ON</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-4 py-6 sm:py-10 flex-grow w-full">
+    
+    <!-- LEFT SIDE FLOATING VECTOR GRAPHICS -->
+    <div class="hidden xl:flex flex-col space-y-12 absolute -left-28 top-16 w-24 pointer-events-auto">
+      
+      <!-- Super Mushroom with "9" Badge -->
+      <div class="group cursor-pointer text-center animate-bobble" onclick="playPowerupSound('mushroom')" title="Mushroom Power-up!">
+        <div class="relative w-20 h-20 mx-auto filter drop-shadow-lg transition-transform group-hover:scale-110">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <path d="M50 8 C 22 8 5 28 5 52 C 5 62 20 68 28 68 L 72 68 C 80 68 95 62 95 52 C 95 28 78 8 50 8 Z" fill="#e52521" stroke="#000" stroke-width="5"/>
+            <ellipse cx="20" cy="40" rx="10" ry="16" fill="#ffffff" stroke="#000" stroke-width="3"/>
+            <ellipse cx="80" cy="40" rx="10" ry="16" fill="#ffffff" stroke="#000" stroke-width="3"/>
+            <circle cx="50" cy="34" r="16" fill="#fbd000" stroke="#000" stroke-width="3"/>
+            <text x="50" y="42" font-family="'Press Start 2P'" font-size="18" fill="#e52521" text-anchor="middle" font-weight="bold">9</text>
+            <path d="M28 68 L 28 88 C 28 95 38 98 50 98 C 62 98 72 95 72 88 L 72 68 Z" fill="#fef3c7" stroke="#000" stroke-width="5"/>
+            <ellipse cx="40" cy="78" rx="3" ry="7" fill="#000"/>
+            <ellipse cx="60" cy="78" rx="3" ry="7" fill="#000"/>
+            <ellipse cx="39" cy="76" rx="1" ry="2" fill="#fff"/>
+            <ellipse cx="59" cy="76" rx="1" ry="2" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="inline-block bg-black text-yellow-300 font-pixel text-[9px] px-2 py-0.5 mt-1 border border-yellow-400 rounded">LVL 9 MUSHROOM</span>
+      </div>
+
+      <!-- Mario Emblem Badge -->
+      <div class="group cursor-pointer text-center" onclick="playPowerupSound('coin')" title="Mario Emblem">
+        <div class="w-16 h-16 mx-auto bg-red-600 rounded-full border-4 border-black p-1 shadow-pixel group-hover:rotate-12 transition-transform flex items-center justify-center">
+          <div class="w-12 h-12 bg-white rounded-full border-2 border-black flex items-center justify-center">
+            <span class="font-pixel text-red-600 text-2xl font-black">M</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fire Flower Vector -->
+      <div class="group cursor-pointer text-center animate-bobble" style="animation-delay: 1s;" onclick="playPowerupSound('flower')" title="Fire Flower">
+        <svg viewBox="0 0 100 100" class="w-16 h-16 mx-auto filter drop-shadow-md group-hover:scale-110 transition-transform">
+          <path d="M50 55 L 50 85 M 50 70 Q 30 65 25 75 M 50 75 Q 70 70 75 80" stroke="#00a800" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <circle cx="50" cy="35" r="30" fill="#e52521" stroke="#000" stroke-width="4"/>
+          <circle cx="50" cy="35" r="21" fill="#fbd000" stroke="#000" stroke-width="3"/>
+          <ellipse cx="50" cy="35" rx="12" ry="15" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <ellipse cx="46" cy="35" rx="2" ry="4" fill="#000"/>
+          <ellipse cx="54" cy="35" rx="2" ry="4" fill="#000"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE FLOATING VECTOR GRAPHICS -->
+    <div class="hidden xl:flex flex-col space-y-12 absolute -right-28 top-16 w-24 pointer-events-auto">
+      
+      <!-- Super Star Vector -->
+      <div class="group cursor-pointer text-center animate-star-glow" onclick="playPowerupSound('star')" title="Invincible Star!">
+        <div class="w-20 h-20 mx-auto transition-transform group-hover:scale-110">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="#fbd000" stroke="#000" stroke-width="5" stroke-linejoin="round"/>
+            <ellipse cx="42" cy="45" rx="3.5" ry="8" fill="#000"/>
+            <ellipse cx="58" cy="45" rx="3.5" ry="8" fill="#000"/>
+            <ellipse cx="41" cy="42" rx="1" ry="3" fill="#fff"/>
+            <ellipse cx="57" cy="42" rx="1" ry="3" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="inline-block bg-black text-white font-pixel text-[9px] px-2 py-0.5 mt-1 border border-yellow-400 rounded">STAR POWER</span>
+      </div>
+
+      <!-- Luigi Emblem Badge -->
+      <div class="group cursor-pointer text-center" onclick="playPowerupSound('coin')" title="Luigi Emblem">
+        <div class="w-16 h-16 mx-auto bg-green-600 rounded-full border-4 border-black p-1 shadow-pixel group-hover:-rotate-12 transition-transform flex items-center justify-center">
+          <div class="w-12 h-12 bg-white rounded-full border-2 border-black flex items-center justify-center">
+            <span class="font-pixel text-green-600 text-2xl font-black">L</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Green Warp Pipe Vector -->
+      <div class="group cursor-pointer text-center" onclick="playPowerupSound('pipe')" title="Warp Pipe">
+        <div class="w-16 h-20 mx-auto filter drop-shadow-md group-hover:scale-105 transition-transform flex flex-col items-center">
+          <div class="w-16 h-7 bg-gradient-to-r from-green-600 via-green-400 to-green-800 border-4 border-black rounded-sm shadow-inner relative">
+            <div class="absolute left-2 top-0 bottom-0 w-2 bg-white/40"></div>
+          </div>
+          <div class="w-12 h-12 bg-gradient-to-r from-green-600 via-green-400 to-green-800 border-x-4 border-b-4 border-black relative">
+            <div class="absolute left-1.5 top-0 bottom-0 w-1.5 bg-white/40"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bg-white rounded-2xl border-4 border-black shadow-pixel-lg p-5 sm:p-8 md:p-10 relative overflow-hidden">
+      
+      <!-- Top Decorative Banner / Header -->
+      <div class="text-center mb-6 sm:mb-8">
+        <div class="inline-flex items-center space-x-2 bg-yellow-400 border-2 border-black px-4 py-1.5 rounded-full font-pixel text-xs sm:text-sm shadow-pixel mb-3">
+          <span class="text-red-600">★</span>
+          <span class="text-black font-bold tracking-wider">YOU'RE INVITED TO THE ULTIMATE LEVEL!</span>
+          <span class="text-red-600">★</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black font-pixel tracking-wider text-red-600 drop-shadow-[3px_3px_0px_#000] mt-1">
+          DEYDEY IS 9!
+        </h1>
+        <p class="text-slate-600 font-bold text-sm sm:text-lg mt-2 tracking-wide uppercase">
+          Super Mario World 9th Birthday Celebration
+        </p>
+      </div>
+
+      <div class="max-w-md mx-auto mb-8">
+        <div class="gold-frame rounded-2xl p-3 sm:p-4 text-center relative shadow-pixel-yellow">
+          
+          <!-- Top Corner Decorative Stars -->
+          <div class="absolute -top-3 -left-3 text-yellow-400 text-2xl drop-shadow-[0_2px_0_#000] animate-pulse">★</div>
+          <div class="absolute -top-3 -right-3 text-yellow-400 text-2xl drop-shadow-[0_2px_0_#000] animate-pulse">★</div>
+
+          <!-- Static Photo Container -->
+          <div class="relative w-full aspect-[4/3] bg-gradient-to-b from-sky-300 via-sky-400 to-sky-500 border-4 border-black rounded-xl overflow-hidden flex items-center justify-center">
+            
+            <!-- Default Elegant Star Motif Placeholder (shown when src is empty or broken) -->
+            <div id="photo-star-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-sky-400 via-sky-300 to-amber-100">
+              <div class="w-24 h-24 mb-3 animate-star-glow">
+                <svg viewBox="0 0 100 100" class="w-full h-full filter drop-shadow-md">
+                  <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="#fbd000" stroke="#000" stroke-width="5" stroke-linejoin="round"/>
+                  <ellipse cx="42" cy="45" rx="3.5" ry="8" fill="#000"/>
+                  <ellipse cx="58" cy="45" rx="3.5" ry="8" fill="#000"/>
+                  <ellipse cx="41" cy="42" rx="1" ry="3" fill="#fff"/>
+                  <ellipse cx="57" cy="42" rx="1" ry="3" fill="#fff"/>
+                </svg>
+              </div>
+              <div class="font-pixel text-slate-900 text-sm sm:text-base font-bold tracking-wider">SUPER DEYDEY</div>
+              <div class="font-pixel text-red-600 text-xs mt-1 bg-yellow-300 border-2 border-black px-3 py-1 rounded-full shadow-pixel">
+                WORLD 9-0 HERO
+              </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- REPLACE src="" BELOW WITH DEYDEY'S PHOTO FILE PATH OR IMAGE URL  -->
+            <!-- Example: src="deydey.jpg" or src="images/deydey.png"              -->
+            <!-- ================================================================= -->
+            <img id="deydeyPhoto" src="PICTURE.png" alt="DeyDey" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
+
+            <!-- Mario Cap Badge Overlay Accent -->
+            <div class="absolute top-3 right-3 z-20 bg-red-600 border-2 border-black rounded-full w-10 h-10 flex items-center justify-center shadow-pixel">
+              <span class="font-pixel text-white text-xs font-bold">M</span>
+            </div>
+
+          </div>
+
+          <!-- Bottom Frame Caption -->
+          <div class="mt-3 bg-black text-yellow-300 font-pixel text-xs sm:text-sm py-2.5 px-4 rounded-xl border-2 border-yellow-400 flex items-center justify-between shadow-pixel">
+            <span>👑 SUPER DEYDEY</span>
+            <span class="text-white text-[10px] bg-red-600 px-2.5 py-1 rounded-lg border border-white/40">LEVEL 9 UNLOCKED</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center space-x-3 sm:space-x-6 my-6">
+        <!-- Question Block 1 -->
+        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group">
+          <span class="font-pixel text-black text-xl sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
+          <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
+          <div class="absolute top-1 right-1 w-1 h-1 bg-black"></div>
+          <div class="absolute bottom-1 left-1 w-1 h-1 bg-black"></div>
+          <div class="absolute bottom-1 right-1 w-1 h-1 bg-black"></div>
+        </button>
+
+        <!-- Main RSVP Primary Action Button -->
+        <a href="#rsvp-section" onclick="playAudio('jump')" class="inline-block bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-base px-6 py-4 rounded-xl border-4 border-black shadow-pixel-lg transform hover:-translate-y-0.5 active:translate-y-1 transition text-center uppercase tracking-wider">
+          🎮 PRESS START TO RSVP
+        </a>
+
+        <!-- Question Block 2 -->
+        <button onclick="hitQuestionBlock(this)" class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group">
+          <span class="font-pixel text-black text-xl sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
+          <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
+          <div class="absolute top-1 right-1 w-1 h-1 bg-black"></div>
+          <div class="absolute bottom-1 left-1 w-1 h-1 bg-black"></div>
+          <div class="absolute bottom-1 right-1 w-1 h-1 bg-black"></div>
+        </button>
+      </div>
+
+      <!-- DIRECT "WARP TO MAP" BUTTON FOR JOLLIBEE AGLIPAY -->
+      <div class="text-center mb-8">
+        <a href="https://maps.google.com/?cid=12370298415881579048" target="_blank" rel="noopener noreferrer" onclick="playAudio('warp')" class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-black font-pixel text-xs sm:text-sm px-6 py-3.5 rounded-xl border-4 border-black shadow-pixel transition transform hover:scale-105 active:scale-95">
+          <span class="text-lg">🏰</span>
+          <span>WARP TO MAP (JOLLIBEE AGLIPAY)</span>
+          <i class="fas fa-external-link-alt text-xs ml-1"></i>
+        </a>
+      </div>
+
+      <div class="bg-black text-yellow-400 border-4 border-yellow-400 rounded-2xl p-4 sm:p-6 shadow-pixel mb-10 text-center">
+        <div class="font-pixel text-xs sm:text-sm text-white mb-4 flex items-center justify-center space-x-2">
+          <span>⏳</span>
+          <span class="tracking-wide">PARTY COUNTDOWN (OCTOBER 18 @ 3:00 PM)</span>
+          <span>⏳</span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto font-pixel">
+          <!-- Days -->
+          <div class="bg-gray-900 border-2 border-red-500 rounded-lg p-2 sm:p-3">
+            <div id="cd-days" class="text-xl sm:text-3xl font-bold text-white">00</div>
+            <div class="text-[9px] sm:text-xs text-red-400 mt-1">DAYS</div>
+          </div>
+          <!-- Hours -->
+          <div class="bg-gray-900 border-2 border-yellow-500 rounded-lg p-2 sm:p-3">
+            <div id="cd-hours" class="text-xl sm:text-3xl font-bold text-white">00</div>
+            <div class="text-[9px] sm:text-xs text-yellow-400 mt-1">HOURS</div>
+          </div>
+          <!-- Minutes -->
+          <div class="bg-gray-900 border-2 border-green-500 rounded-lg p-2 sm:p-3">
+            <div id="cd-mins" class="text-xl sm:text-3xl font-bold text-white">00</div>
+            <div class="text-[9px] sm:text-xs text-green-400 mt-1">MINS</div>
+          </div>
+          <!-- Seconds -->
+          <div class="bg-gray-900 border-2 border-blue-500 rounded-lg p-2 sm:p-3">
+            <div id="cd-secs" class="text-xl sm:text-3xl font-bold text-white">00</div>
+            <div class="text-[9px] sm:text-xs text-blue-400 mt-1">SECS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        
+        <!-- STAGE DATE -->
+        <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel flex items-start space-x-3">
+          <div class="w-10 h-10 bg-red-600 rounded-lg border-2 border-black flex items-center justify-center text-white shrink-0 shadow-pixel">
+            <i class="fas fa-calendar-alt text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-pixel text-xs text-red-600 uppercase mb-1">STAGE DATE</h3>
+            <p class="font-bold text-slate-900 text-base">October 18</p>
+            <p class="text-xs text-slate-600 font-medium">Sunday Afternoon</p>
+          </div>
+        </div>
+
+        <!-- WARP TIME -->
+        <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel flex items-start space-x-3">
+          <div class="w-10 h-10 bg-yellow-400 rounded-lg border-2 border-black flex items-center justify-center text-black shrink-0 shadow-pixel">
+            <i class="fas fa-clock text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-pixel text-xs text-amber-600 uppercase mb-1">WARP TIME</h3>
+            <p class="font-bold text-slate-900 text-base">3:00 PM PST</p>
+            <p class="text-xs text-slate-600 font-medium">Be on time for power-ups!</p>
+          </div>
+        </div>
+
+        <!-- WORLD VENUE -->
+        <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel flex items-start space-x-3">
+          <div class="w-10 h-10 bg-green-500 rounded-lg border-2 border-black flex items-center justify-center text-black shrink-0 shadow-pixel">
+            <i class="fas fa-map-marker-alt text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-pixel text-xs text-green-700 uppercase mb-1">WORLD VENUE</h3>
+            <p class="font-bold text-slate-900 text-base">Jollibee Aglipay</p>
+            <p class="text-xs text-slate-600 font-medium">185 Rt. Rev. G. Aglipay St., Mandaluyong City</p>
+          </div>
+        </div>
+
+      </div>
+
+      <section id="rsvp-section" class="bg-sky-100 border-4 border-black rounded-2xl p-6 sm:p-8 shadow-pixel relative">
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white font-pixel text-xs sm:text-sm px-6 py-2 rounded-full border-2 border-black shadow-pixel">
+          🎯 PLAYER SELECT RSVP
+        </div>
+
+        <div class="text-center mt-2 mb-6">
+          <h2 class="font-pixel text-xl sm:text-2xl text-slate-900">JOIN DEYDEY'S PARTY CREW</h2>
+          <p class="text-slate-600 text-sm mt-1">Confirm your attendance so we can reserve your party power-ups!</p>
+        </div>
+
+        <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="max-w-xl mx-auto space-y-4">
+          
+          <!-- Player Name Input -->
+          <div>
+            <label class="block font-pixel text-xs text-slate-800 mb-1.5">PLAYER NAME / GAMERTAG *</label>
+            <input type="text" id="player-name" required placeholder="e.g. Mario, Auntie Sarah, Cousin Jay" 
+                   class="w-full px-4 py-3 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm" />
+          </div>
+
+          <!-- Attendance Choice -->
+          <div>
+            <label class="block font-pixel text-xs text-slate-800 mb-1.5">ATTENDANCE STATUS *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="border-3 border-black bg-white rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:bg-green-50 transition active:scale-98">
+                <input type="radio" name="attendance" value="Attending" checked class="w-5 h-5 text-green-600 accent-green-600" />
+                <span class="font-bold text-slate-900 text-sm">🍄 Ready to Play! (YES)</span>
+              </label>
+              <label class="border-3 border-black bg-white rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:bg-red-50 transition active:scale-98">
+                <input type="radio" name="attendance" value="Declined" class="w-5 h-5 text-red-600 accent-red-600" />
+                <span class="font-bold text-slate-900 text-sm">👾 Game Over (CAN'T MAKE IT)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Number of Players / Guests -->
+          <div>
+            <label class="block font-pixel text-xs text-slate-800 mb-1.5">NUMBER OF PLAYERS (GUESTS)</label>
+            <select id="guest-count" class="w-full px-4 py-3 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm bg-white">
+              <option value="1">1 Player (Just Me)</option>
+              <option value="2">2 Players (+1 Guest)</option>
+              <option value="3">3 Players (+2 Guests)</option>
+              <option value="4+">4+ Players (Full Squad)</option>
+            </select>
+          </div>
+
+          <!-- Birthday Wish / Note -->
+          <div>
+            <label class="block font-pixel text-xs text-slate-800 mb-1.5">BIRTHDAY WISH FOR DEYDEY</label>
+            <textarea id="birthday-wish" rows="3" placeholder="Leave a sweet or funny level 9 message for DeyDey..." 
+                      class="w-full px-4 py-3 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-pixel text-sm py-4 rounded-xl border-4 border-black shadow-pixel-lg transition transform active:translate-y-1 flex items-center justify-center space-x-2">
+            <span>🚀 SUBMIT RSVP LEVEL DATA</span>
+          </button>
+
+        </form>
+      </section>
+
+      <section class="mt-10 pt-8 border-t-4 border-black">
+        <div class="text-center mb-6">
+          <h2 class="font-pixel text-lg sm:text-xl text-slate-900 flex items-center justify-center space-x-2">
+            <span>⭐</span>
+            <span>PLAYER HIGH SCORES & WISHES</span>
+            <span>⭐</span>
+          </h2>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1">See messages left by DeyDey's party friends!</p>
+        </div>
+
+        <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Sample Messages -->
+          <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative">
+            <div class="flex items-center space-x-2 mb-2">
+              <div class="w-7 h-7 bg-red-600 text-white rounded-full font-pixel text-[10px] flex items-center justify-center border border-black">M</div>
+              <span class="font-bold text-slate-900 text-sm">Auntie Lisa</span>
+              <span class="text-[10px] bg-green-200 text-green-800 font-pixel px-2 py-0.5 rounded ml-auto">READY TO PLAY!</span>
+            </div>
+            <p class="text-xs text-slate-700 italic">"Happy 9th Birthday DeyDey! So excited to celebrate with you at Jollibee!"</p>
+          </div>
+
+          <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative">
+            <div class="flex items-center space-x-2 mb-2">
+              <div class="w-7 h-7 bg-green-600 text-white rounded-full font-pixel text-[10px] flex items-center justify-center border border-black">L</div>
+              <span class="font-bold text-slate-900 text-sm">Uncle Mark</span>
+              <span class="text-[10px] bg-green-200 text-green-800 font-pixel px-2 py-0.5 rounded ml-auto">READY TO PLAY!</span>
+            </div>
+            <p class="text-xs text-slate-700 italic">"Level 9 unlocked! Keep shining big boy DeyDey!"</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- CUSTOM RETRO CONFIRMATION MODAL (REPLACES ALERT) -->
+  <div id="rsvp-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-black rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-pixel-yellow relative animate-bounce" style="animation-iteration-count: 1;">
+      <div class="w-16 h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel">
+        👑
+      </div>
+      <h3 class="font-pixel text-lg sm:text-xl text-red-600 mb-2">STAGE CLEAR!</h3>
+      <p id="rsvp-modal-text" class="text-slate-800 font-bold text-sm sm:text-base mb-6">
+        Thank you! Your RSVP has been saved for DeyDey's party.
+      </p>
+      <button onclick="closeRSVPModal()" class="w-full bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-sm py-3 rounded-xl border-3 border-black shadow-pixel uppercase">
+        CONTINUE GAME 🎮
+      </button>
+    </div>
+  </div>
+
+  <footer class="relative z-10 bg-amber-800 border-t-4 border-black text-white py-6 px-4 text-center mt-12">
+    <!-- Brick pattern top accent -->
+    <div class="absolute -top-4 left-0 right-0 h-4 bg-repeat-x flex justify-around opacity-90" style="background-image: linear-gradient(90deg, #d04810 0%, #d04810 50%, #000 50%, #000 100%); background-size: 20px 100%;"></div>
+
+    <div class="max-w-4xl mx-auto font-pixel text-xs space-y-2">
+      <p class="text-yellow-300">SUPER MARIO BROS. • DEYDEY'S 9TH BIRTHDAY EDITION</p>
+      <p class="text-slate-300 text-[10px]">Made with ❤️ for DeyDey • Mandaluyong City, Philippines</p>
+    </div>
+  </footer>
+
+  <script>
+    // Audio Context Setup (Synthesizes NES Retro SFX natively without external MP3 files)
+    let audioCtx = null;
+    let isSoundOn = true;
+    let coinScore = 0;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleAudio() {
+      isSoundOn = !isSoundOn;
+      const icon = document.getElementById('sound-icon');
+      const text = document.getElementById('sound-text');
+      
+      if (isSoundOn) {
+        icon.className = "fas fa-volume-up text-xs";
+        text.innerText = "SOUND ON";
+        playAudio('coin');
+      } else {
+        icon.className = "fas fa-volume-mute text-xs";
+        text.innerText = "SOUND OFF";
+      }
+    }
+
+    // Synth Retro Sound Generator
+    function playAudio(type) {
+      if (!isSoundOn) return;
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'coin') {
+        // Classic Mario Coin sound (B5 then E6)
+        const osc1 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        osc1.type = 'square';
+        
+        osc1.frequency.setValueAtTime(987.77, now); // B5
+        osc1.frequency.setValueAtTime(1318.51, now + 0.08); // E6
+        
+        gain1.gain.setValueAtTime(0.15, now);
+        gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        
+        osc1.connect(gain1);
+        gain1.connect(audioCtx.destination);
+        
+        osc1.start(now);
+        osc1.stop(now + 0.35);
+
+      } else if (type === 'jump') {
+        // Classic Jump pitch sweep
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
+        
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.linearRampToValueAtTime(0.01, now + 0.15);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start(now);
+        osc.stop(now + 0.15);
+
+      } else if (type === 'warp') {
+        // Descending Pipe sound
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        
+        osc.frequency.setValueAtTime(400, now);
+        osc.frequency.linearRampToValueAtTime(80, now + 0.3);
+        
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start(now);
+        osc.stop(now + 0.3);
+
+      } else if (type === 'fanfare') {
+        // 1UP Powerup Fanfare Arpeggio
+        const notes = [330, 392, 659, 523, 587, 784];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'square';
+          osc.frequency.value = freq;
+          
+          gain.gain.setValueAtTime(0.12, now + (i * 0.06));
+          gain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.06) + 0.1);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start(now + (i * 0.06));
+          osc.stop(now + (i * 0.06) + 0.1);
+        });
+      }
+    }
+
+    function playPowerupSound(item) {
+      if (item === 'mushroom' || item === 'star') {
+        playAudio('fanfare');
+      } else if (item === 'pipe') {
+        playAudio('warp');
+      } else {
+        playAudio('coin');
+      }
+    }
+
+    function checkPhotoVisibility(img) {
+      if (img.getAttribute('src') && img.getAttribute('src').trim() !== "") {
+        img.classList.remove('hidden');
+      } else {
+        img.classList.add('hidden');
+      }
+    }
+
+    // Run photo check on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const img = document.getElementById('deydeyPhoto');
+      checkPhotoVisibility(img);
+    });
+
+    // Realtime Countdown Timer to October 18 @ 3:00 PM PST
+    const targetDate = new Date("2026-10-18T15:00:00+08:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById('cd-days').innerText = "00";
+        document.getElementById('cd-hours').innerText = "00";
+        document.getElementById('cd-mins').innerText = "00";
+        document.getElementById('cd-secs').innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').innerText = days < 10 ? "0" + days : days;
+      document.getElementById('cd-hours').innerText = hours < 10 ? "0" + hours : hours;
+      document.getElementById('cd-mins').innerText = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById('cd-secs').innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function hitQuestionBlock(btn) {
+      playAudio('coin');
+      coinScore += 1;
+      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
+
+      // Create floating +100 coin text effect
+      const rect = btn.getBoundingClientRect();
+      const popup = document.createElement('div');
+      popup.className = 'popup-coin font-pixel text-yellow-400 text-sm font-bold drop-shadow-[0_2px_0_#000]';
+      popup.innerText = '+100 🪙';
+      popup.style.left = `${rect.left + window.scrollX + 10}px`;
+      popup.style.top = `${rect.top + window.scrollY - 10}px`;
+      document.body.appendChild(popup);
+
+      setTimeout(() => popup.remove(), 800);
+    }
+
+    function triggerCoinClick(e) {
+      playAudio('coin');
+      coinScore += 1;
+      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
+    }
+
+    function handleRSVPSubmit(event) {
+      event.preventDefault();
+      playAudio('fanfare');
+
+      const name = document.getElementById('player-name').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked').value;
+      const guests = document.getElementById('guest-count').value;
+      const wish = document.getElementById('birthday-wish').value.trim();
+
+      if (!name) return;
+
+      // Append new message card to Guestbook Wall
+      const container = document.getElementById('wishes-container');
+      const card = document.createElement('div');
+      card.className = "bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative animate-bounce";
+      
+      const isAttending = attendance === 'Attending';
+      const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
+      const badgeText = isAttending ? `READY (${guests} PLAYERS)` : 'GAME OVER';
+
+      card.innerHTML = `
+        <div class="flex items-center space-x-2 mb-2">
+          <div class="w-7 h-7 bg-yellow-400 text-black font-pixel text-[10px] rounded-full flex items-center justify-center border border-black font-bold">★</div>
+          <span class="font-bold text-slate-900 text-sm">${escapeHTML(name)}</span>
+          <span class="text-[10px] ${badgeBg} font-pixel px-2 py-0.5 rounded ml-auto">${badgeText}</span>
+        </div>
+        <p class="text-xs text-slate-700 italic">"${escapeHTML(wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
+      `;
+
+      container.prepend(card);
+
+      // Reset form
+      document.getElementById('rsvp-form').reset();
+
+      // Show retro custom modal confirmation
+      document.getElementById('rsvp-modal-text').innerText = `🎉 LEVEL CLEAR! Thank you ${name}! Your RSVP level data has been recorded for DeyDey's party.`;
+      document.getElementById('rsvp-modal').classList.remove('hidden');
+    }
+
+    function closeRSVPModal() {
+      playAudio('coin');
+      document.getElementById('rsvp-modal').classList.add('hidden');
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+  </script>
+
+</body>
+</html>
