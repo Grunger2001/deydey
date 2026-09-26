@@ -336,7 +336,7 @@
             <!-- REPLACE src="" BELOW WITH DEYDEY'S PHOTO FILE PATH OR IMAGE URL  -->
             <!-- Example: src="deydey.jpg" or src="images/deydey.png"              -->
             <!-- ================================================================= -->
-            <img id="deydeyPhoto" src="PICTURE.png" alt="DeyDey" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
+            <img id="deydeyPhoto" src="" alt="DeyDey" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
 
             <!-- Mario Cap Badge Overlay Accent -->
             <div class="absolute top-3 right-3 z-20 bg-red-600 border-2 border-black rounded-full w-10 h-10 flex items-center justify-center shadow-pixel">
@@ -469,6 +469,13 @@
           <p class="text-slate-600 text-sm mt-1">Confirm your attendance so we can reserve your party power-ups!</p>
         </div>
 
+        <!-- FORMSPREE EMAIL NOTIFICATION SETUP (OPTIONAL):
+             To receive RSVPs directly in your email inbox via Formspree:
+             1. Sign up for free at https://formspree.io
+             2. Create a form and copy your Form endpoint URL (e.g., https://formspree.io/f/xbbzyqpw)
+             3. Add action="https://formspree.io/f/YOUR_FORM_ID" method="POST" to the form tag below,
+                or set formspreeEndpoint in the JS script at the bottom of this file.
+        -->
         <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="max-w-xl mx-auto space-y-4">
           
           <!-- Player Name Input -->
@@ -529,25 +536,26 @@
           <p class="text-slate-600 text-xs sm:text-sm mt-1">See messages left by DeyDey's party friends!</p>
         </div>
 
-        <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Sample Messages -->
-          <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative">
-            <div class="flex items-center space-x-2 mb-2">
-              <div class="w-7 h-7 bg-red-600 text-white rounded-full font-pixel text-[10px] flex items-center justify-center border border-black">M</div>
-              <span class="font-bold text-slate-900 text-sm">Auntie Lisa</span>
-              <span class="text-[10px] bg-green-200 text-green-800 font-pixel px-2 py-0.5 rounded ml-auto">READY TO PLAY!</span>
-            </div>
-            <p class="text-xs text-slate-700 italic">"Happy 9th Birthday DeyDey! So excited to celebrate with you at Jollibee!"</p>
+        <!-- Dynamic Guest Counter Stats Dashboard -->
+        <div id="guest-counter-bar" class="max-w-lg mx-auto mb-6 bg-black text-white border-3 border-yellow-400 rounded-xl p-3 flex justify-around items-center font-pixel text-xs shadow-pixel">
+          <div class="text-center">
+            <span class="block text-green-400 text-lg font-bold" id="stat-attending">0</span>
+            <span class="text-[9px] text-gray-300">ATTENDING</span>
           </div>
+          <div class="h-8 w-0.5 bg-yellow-400/50"></div>
+          <div class="text-center">
+            <span class="block text-yellow-300 text-lg font-bold" id="stat-total-guests">0</span>
+            <span class="text-[9px] text-gray-300">TOTAL GUESTS</span>
+          </div>
+          <div class="h-8 w-0.5 bg-yellow-400/50"></div>
+          <div class="text-center">
+            <span class="block text-red-400 text-lg font-bold" id="stat-declined">0</span>
+            <span class="text-[9px] text-gray-300">DECLINED</span>
+          </div>
+        </div>
 
-          <div class="bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative">
-            <div class="flex items-center space-x-2 mb-2">
-              <div class="w-7 h-7 bg-green-600 text-white rounded-full font-pixel text-[10px] flex items-center justify-center border border-black">L</div>
-              <span class="font-bold text-slate-900 text-sm">Uncle Mark</span>
-              <span class="text-[10px] bg-green-200 text-green-800 font-pixel px-2 py-0.5 rounded ml-auto">READY TO PLAY!</span>
-            </div>
-            <p class="text-xs text-slate-700 italic">"Level 9 unlocked! Keep shining big boy DeyDey!"</p>
-          </div>
+        <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Wishes rendered dynamically from localStorage -->
         </div>
       </section>
 
@@ -557,10 +565,10 @@
   <!-- CUSTOM RETRO CONFIRMATION MODAL (REPLACES ALERT) -->
   <div id="rsvp-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white border-4 border-black rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-pixel-yellow relative animate-bounce" style="animation-iteration-count: 1;">
-      <div class="w-16 h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel">
+      <div id="rsvp-modal-icon" class="w-16 h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel">
         👑
       </div>
-      <h3 class="font-pixel text-lg sm:text-xl text-red-600 mb-2">STAGE CLEAR!</h3>
+      <h3 id="rsvp-modal-title" class="font-pixel text-lg sm:text-xl text-red-600 mb-2">STAGE CLEAR!</h3>
       <p id="rsvp-modal-text" class="text-slate-800 font-bold text-sm sm:text-base mb-6">
         Thank you! Your RSVP has been saved for DeyDey's party.
       </p>
@@ -673,6 +681,44 @@
         osc.start(now);
         osc.stop(now + 0.3);
 
+      } else if (type === '1up') {
+        // Classic 1UP Powerup Chime (E5, G5, E6, C6, D6, G6)
+        const notes = [659.25, 783.99, 1318.51, 1046.50, 1174.66, 1567.98];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'square';
+          osc.frequency.value = freq;
+          
+          gain.gain.setValueAtTime(0.12, now + (i * 0.07));
+          gain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.07) + 0.12);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start(now + (i * 0.07));
+          osc.stop(now + (i * 0.07) + 0.12);
+        });
+
+      } else if (type === 'gameover') {
+        // Game Over Pipe/Defeat Sound (descending square wave arpeggio)
+        const notes = [400, 350, 300, 250, 200, 150];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, now + (i * 0.09));
+          
+          gain.gain.setValueAtTime(0.15, now + (i * 0.09));
+          gain.gain.linearRampToValueAtTime(0.01, now + (i * 0.09) + 0.12);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start(now + (i * 0.09));
+          osc.stop(now + (i * 0.09) + 0.12);
+        });
+
       } else if (type === 'fanfare') {
         // 1UP Powerup Fanfare Arpeggio
         const notes = [330, 392, 659, 523, 587, 784];
@@ -696,7 +742,7 @@
 
     function playPowerupSound(item) {
       if (item === 'mushroom' || item === 'star') {
-        playAudio('fanfare');
+        playAudio('1up');
       } else if (item === 'pipe') {
         playAudio('warp');
       } else {
@@ -712,10 +758,102 @@
       }
     }
 
-    // Run photo check on load
+    const LOCAL_STORAGE_KEY = 'mario_deydey_party_rsvps';
+
+    const defaultRSVPs = [
+      {
+        name: 'Auntie Lisa',
+        attendance: 'Attending',
+        guests: '2',
+        wish: 'Happy 9th Birthday DeyDey! So excited to celebrate with you at Jollibee!',
+        timestamp: new Date().toISOString()
+      },
+      {
+        name: 'Uncle Mark',
+        attendance: 'Attending',
+        guests: '1',
+        wish: 'Level 9 unlocked! Keep shining big boy DeyDey!',
+        timestamp: new Date().toISOString()
+      }
+    ];
+
+    function getStoredRSVPs() {
+      const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (!data) {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(defaultRSVPs));
+        return defaultRSVPs;
+      }
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        return defaultRSVPs;
+      }
+    }
+
+    function saveRSVP(rsvp) {
+      const rsvps = getStoredRSVPs();
+      rsvps.unshift(rsvp);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(rsvps));
+      renderWishesAndStats();
+    }
+
+    function renderWishesAndStats() {
+      const rsvps = getStoredRSVPs();
+      const container = document.getElementById('wishes-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      let totalAttendingCount = 0;
+      let totalGuestsCount = 0;
+      let totalDeclinedCount = 0;
+
+      rsvps.forEach(item => {
+        const isAttending = item.attendance === 'Attending';
+        const numGuests = item.guests === '4+' ? 4 : (parseInt(item.guests) || 1);
+
+        if (isAttending) {
+          totalAttendingCount += 1;
+          totalGuestsCount += numGuests;
+        } else {
+          totalDeclinedCount += 1;
+        }
+
+        const card = document.createElement('div');
+        card.className = "bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative transition-all hover:-translate-y-0.5";
+        
+        const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
+        const badgeText = isAttending ? `READY (${item.guests} PLAYER${numGuests > 1 ? 'S' : ''})` : 'GAME OVER';
+        const avatarLetter = item.name ? item.name.charAt(0).toUpperCase() : '★';
+        const avatarBg = isAttending ? 'bg-red-600 text-white' : 'bg-gray-700 text-white';
+
+        card.innerHTML = `
+          <div class="flex items-center space-x-2 mb-2">
+            <div class="w-7 h-7 ${avatarBg} font-pixel text-[10px] rounded-full flex items-center justify-center border border-black font-bold">${escapeHTML(avatarLetter)}</div>
+            <span class="font-bold text-slate-900 text-sm">${escapeHTML(item.name)}</span>
+            <span class="text-[10px] ${badgeBg} font-pixel px-2 py-0.5 rounded ml-auto">${badgeText}</span>
+          </div>
+          <p class="text-xs text-slate-700 italic">"${escapeHTML(item.wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // Update counters in guest counter bar
+      const elAttending = document.getElementById('stat-attending');
+      const elTotal = document.getElementById('stat-total-guests');
+      const elDeclined = document.getElementById('stat-declined');
+
+      if (elAttending) elAttending.innerText = totalAttendingCount;
+      if (elTotal) elTotal.innerText = totalGuestsCount;
+      if (elDeclined) elDeclined.innerText = totalDeclinedCount;
+    }
+
+    // Run photo check and load RSVPs on DOM load
     window.addEventListener('DOMContentLoaded', () => {
       const img = document.getElementById('deydeyPhoto');
       checkPhotoVisibility(img);
+      renderWishesAndStats();
     });
 
     // Realtime Countdown Timer to October 18 @ 3:00 PM PST
@@ -772,7 +910,6 @@
 
     function handleRSVPSubmit(event) {
       event.preventDefault();
-      playAudio('fanfare');
 
       const name = document.getElementById('player-name').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked').value;
@@ -781,31 +918,59 @@
 
       if (!name) return;
 
-      // Append new message card to Guestbook Wall
-      const container = document.getElementById('wishes-container');
-      const card = document.createElement('div');
-      card.className = "bg-amber-50 border-3 border-black rounded-xl p-4 shadow-pixel relative animate-bounce";
-      
       const isAttending = attendance === 'Attending';
-      const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
-      const badgeText = isAttending ? `READY (${guests} PLAYERS)` : 'GAME OVER';
 
-      card.innerHTML = `
-        <div class="flex items-center space-x-2 mb-2">
-          <div class="w-7 h-7 bg-yellow-400 text-black font-pixel text-[10px] rounded-full flex items-center justify-center border border-black font-bold">★</div>
-          <span class="font-bold text-slate-900 text-sm">${escapeHTML(name)}</span>
-          <span class="text-[10px] ${badgeBg} font-pixel px-2 py-0.5 rounded ml-auto">${badgeText}</span>
-        </div>
-        <p class="text-xs text-slate-700 italic">"${escapeHTML(wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
-      `;
+      // Play retro audio sound
+      if (isAttending) {
+        playAudio('1up');
+      } else {
+        playAudio('gameover');
+      }
 
-      container.prepend(card);
+      // Save persistent RSVP object
+      const rsvp = {
+        name: name,
+        attendance: attendance,
+        guests: guests,
+        wish: wish,
+        timestamp: new Date().toISOString()
+      };
+
+      saveRSVP(rsvp);
+
+      // Optional Formspree API Integration guide (if endpoint specified)
+      const formspreeEndpoint = ""; // Host can place "https://formspree.io/f/YOUR_FORM_ID" here if using JS fetch
+      if (formspreeEndpoint) {
+        fetch(formspreeEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(rsvp)
+        }).catch(err => console.log('Optional Formspree submission error:', err));
+      }
+
+      // Configure Retro Modal content
+      const modalIcon = document.getElementById('rsvp-modal-icon');
+      const modalTitle = document.getElementById('rsvp-modal-title');
+      const modalText = document.getElementById('rsvp-modal-text');
+
+      if (isAttending) {
+        modalIcon.innerHTML = '🏆';
+        modalIcon.className = 'w-16 h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel';
+        modalTitle.innerText = 'STAGE CLEAR! QUEST ACCEPTED';
+        modalTitle.className = 'font-pixel text-lg sm:text-xl text-green-600 mb-2';
+        modalText.innerText = `WOOHOO ${name.toUpperCase()}! You are registered for DeyDey's World 9-0 Birthday Quest. Get ready for power-ups!`;
+      } else {
+        modalIcon.innerHTML = '👾';
+        modalIcon.className = 'w-16 h-16 mx-auto bg-red-200 border-3 border-black rounded-full flex items-center justify-center text-3xl mb-4 shadow-pixel';
+        modalTitle.innerText = 'GAME OVER! QUEST DECLINED';
+        modalTitle.className = 'font-pixel text-lg sm:text-xl text-red-600 mb-2';
+        modalText.innerText = `Thanks for letting us know, ${name}. We'll miss you at DeyDey's 9th Birthday!`;
+      }
 
       // Reset form
       document.getElementById('rsvp-form').reset();
 
-      // Show retro custom modal confirmation
-      document.getElementById('rsvp-modal-text').innerText = `🎉 LEVEL CLEAR! Thank you ${name}! Your RSVP level data has been recorded for DeyDey's party.`;
+      // Display custom retro modal
       document.getElementById('rsvp-modal').classList.remove('hidden');
     }
 
@@ -829,3 +994,11 @@
 
 </body>
 </html>
+```
+
+### Key Improvements Made:
+1. **Persistent LocalStorage Saving**: RSVPs are automatically saved to `localStorage` under `mario_deydey_party_rsvps` so submitted entries persist across page reloads.
+2. **Dynamic Guest Dashboard & Wishes Wall**: Submissions dynamically compute and display real-time player counts (`Attending`, `Total Guests`, and `Declined`) above the high score wishes grid.
+3. **8-bit Web Audio SFX**: Integrated a 1UP power-up sound chime for confirmed attendees and a classic 8-bit defeat sound for declines.
+4. **Retro Modal Alerts**: Displays tailored **"STAGE CLEAR! QUEST ACCEPTED 🏆"** or **"GAME OVER! QUEST DECLINED 👾"** retro confirmation modals without breaking visual style.
+5. **Formspree Setup Comments**: Added explicit setup comments in the HTML form and JavaScript logic for optional email notification routing via Formspree.
