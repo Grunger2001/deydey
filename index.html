@@ -8,12 +8,12 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts for Retro Pixel & Modern Mobile Typography -->
+  <!-- Google Fonts: Press Start 2P & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome for standard UI icons -->
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -59,22 +59,15 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Fluid arcade typography using clamp() for mobile viewports */
     .font-pixel-fluid-title {
-      font-size: clamp(1.5rem, 7vw, 3.75rem);
+      font-size: clamp(1.4rem, 6.5vw, 3.5rem);
       line-height: 1.15;
-    }
-
-    .font-pixel-fluid-sub {
-      font-size: clamp(0.55rem, 2.2vw, 0.875rem);
-      line-height: 1.4;
     }
 
     .font-pixel-fluid-badge {
       font-size: clamp(0.5rem, 2vw, 0.75rem);
     }
 
-    /* Keyframe Animations */
     @keyframes floatCloud {
       0% { transform: translateX(-120px); }
       100% { transform: translateX(100vw); }
@@ -106,24 +99,12 @@
       animation: pulse-glow 2s ease-in-out infinite;
     }
 
-    /* Pixel Frame & Borders */
-    .pixel-border-sm {
-      border: 3px solid #000;
-      box-shadow: 3px 3px 0 #000;
-    }
-
-    .pixel-border-lg {
-      border: 4px solid #000;
-      box-shadow: 6px 6px 0 #000;
-    }
-
     .gold-frame {
       border: 4px solid #000;
       outline: 3px solid #fbd000;
       background: linear-gradient(135deg, #fff3a1 0%, #ffc000 100%);
     }
 
-    /* Floating Coin Jump Animation */
     @keyframes coinPopup {
       0% { opacity: 1; transform: translateY(0) scale(1); }
       50% { opacity: 1; transform: translateY(-35px) scale(1.2); }
@@ -137,13 +118,11 @@
       z-index: 50;
     }
 
-    /* Touch target helpers */
     .touch-target {
       min-height: 44px;
       min-width: 44px;
     }
 
-    /* Custom mobile scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -159,7 +138,6 @@
 <body class="min-h-screen text-slate-900 flex flex-col justify-between relative overflow-x-hidden">
 
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    <!-- Big Sky Cloud 1 -->
     <div class="absolute top-8 animate-cloud-slow opacity-80" style="left: -50px;">
       <svg width="120" height="50" viewBox="0 0 140 60" fill="white">
         <path d="M20 50 Q 20 20 45 20 Q 55 10 75 10 Q 95 10 105 25 Q 125 25 125 50 Z" />
@@ -169,14 +147,12 @@
       </svg>
     </div>
     
-    <!-- Big Sky Cloud 2 -->
     <div class="absolute top-28 animate-cloud-fast opacity-70" style="left: 30%;">
       <svg width="140" height="55" viewBox="0 0 180 70" fill="white">
         <path d="M20 60 Q 20 30 50 30 Q 65 15 95 15 Q 125 15 135 30 Q 165 30 165 60 Z" />
       </svg>
     </div>
 
-    <!-- Distant Hills at Bottom -->
     <div class="absolute bottom-0 w-full flex justify-between items-end opacity-30">
       <svg width="160" height="70" viewBox="0 0 220 90" fill="#22c55e">
         <path d="M0 90 Q 110 -10 220 90 Z"/>
@@ -190,7 +166,6 @@
   <header class="sticky top-0 z-50 bg-black text-white border-b-4 border-yellow-400 px-3 py-2 shadow-pixel">
     <div class="max-w-5xl mx-auto flex items-center justify-between font-pixel gap-1">
       
-      <!-- Mario World Title Badge -->
       <div class="flex items-center space-x-1.5 text-yellow-300">
         <svg class="w-4 h-4 sm:w-5 sm:h-5 animate-bounce shrink-0" viewBox="0 0 100 100" fill="none">
           <path d="M50 10 C25 10 10 30 10 50 C10 65 25 70 25 70 L75 70 C75 70 90 65 90 50 C90 30 75 10 50 10 Z" fill="#e52521"/>
@@ -201,15 +176,12 @@
         <span class="font-pixel-fluid-badge tracking-tight sm:tracking-wider">MARIO <span class="text-white">x</span> DEYDEY <span class="text-red-500">WORLD 9-0</span></span>
       </div>
 
-      <!-- Coin Counter & Sound Toggle Button -->
       <div class="flex items-center space-x-2">
-        <!-- Coin Button -->
         <button id="hud-coin-btn" onclick="triggerCoinClick(event)" class="touch-target flex items-center bg-gray-900 border-2 border-yellow-400 px-2 py-1 rounded hover:bg-yellow-900/40 transition active:scale-95 cursor-pointer">
           <span class="text-yellow-400 mr-1 text-xs sm:text-sm">🪙</span>
           <span id="coin-count" class="text-yellow-300 text-[10px] sm:text-xs">x00</span>
         </button>
 
-        <!-- Sound Toggle Button -->
         <button id="sound-btn" onclick="toggleAudio()" class="touch-target bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1 border-2 border-white rounded shadow-pixel flex items-center space-x-1 transition active:translate-y-0.5 cursor-pointer">
           <i id="sound-icon" class="fas fa-volume-up text-xs"></i>
           <span id="sound-text" class="hidden xs:inline text-[9px] sm:text-xs font-pixel">SOUND ON</span>
@@ -221,9 +193,7 @@
 
   <main class="relative z-10 max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-grow w-full">
     
-    <!-- DESKTOP FLOATING POWERUPS (Hidden on mobile to preserve layout) -->
     <div class="hidden lg:flex flex-col space-y-12 absolute -left-24 top-16 w-20 pointer-events-auto">
-      <!-- Super Mushroom -->
       <div class="group cursor-pointer text-center animate-bobble" onclick="playPowerupSound('mushroom')" title="Mushroom Power-up!">
         <div class="w-16 h-16 mx-auto filter drop-shadow-lg transition-transform group-hover:scale-110">
           <svg viewBox="0 0 100 100" class="w-full h-full">
@@ -238,7 +208,6 @@
         <span class="inline-block bg-black text-yellow-300 font-pixel text-[8px] px-1.5 py-0.5 mt-1 border border-yellow-400 rounded">LVL 9</span>
       </div>
 
-      <!-- Fire Flower Vector -->
       <div class="group cursor-pointer text-center animate-bobble" style="animation-delay: 1s;" onclick="playPowerupSound('flower')" title="Fire Flower">
         <svg viewBox="0 0 100 100" class="w-14 h-14 mx-auto filter drop-shadow-md group-hover:scale-110 transition-transform">
           <path d="M50 55 L 50 85 M 50 70 Q 30 65 25 75 M 50 75 Q 70 70 75 80" stroke="#00a800" stroke-width="8" stroke-linecap="round" fill="none"/>
@@ -250,7 +219,6 @@
     </div>
 
     <div class="hidden lg:flex flex-col space-y-12 absolute -right-24 top-16 w-20 pointer-events-auto">
-      <!-- Invincible Star -->
       <div class="group cursor-pointer text-center animate-star-glow" onclick="playPowerupSound('star')" title="Invincible Star!">
         <div class="w-16 h-16 mx-auto transition-transform group-hover:scale-110">
           <svg viewBox="0 0 100 100" class="w-full h-full">
@@ -262,7 +230,6 @@
         <span class="inline-block bg-black text-white font-pixel text-[8px] px-1.5 py-0.5 mt-1 border border-yellow-400 rounded">STAR POWER</span>
       </div>
 
-      <!-- Warp Pipe -->
       <div class="group cursor-pointer text-center" onclick="playPowerupSound('pipe')" title="Warp Pipe">
         <div class="w-14 h-16 mx-auto filter drop-shadow-md group-hover:scale-105 transition-transform flex flex-col items-center">
           <div class="w-14 h-6 bg-gradient-to-r from-green-600 via-green-400 to-green-800 border-3 border-black rounded-sm shadow-inner relative"></div>
@@ -271,7 +238,6 @@
       </div>
     </div>
 
-    <!-- MAIN CARD CONTAINER -->
     <div class="bg-white rounded-2xl border-4 border-black shadow-pixel-lg p-4 sm:p-8 relative overflow-hidden">
       
       <div class="text-center mb-5 sm:mb-8">
@@ -282,10 +248,10 @@
         </div>
 
         <h1 class="font-pixel-fluid-title font-black font-pixel tracking-wider text-red-600 drop-shadow-[2px_2px_0px_#000] sm:drop-shadow-[4px_4px_0px_#000] mt-1">
-          DEYDEY IS 9!
+          DEYDEY IS TURNING 9!
         </h1>
         <p class="text-slate-600 font-bold text-xs sm:text-base mt-1 sm:mt-2 tracking-wide uppercase">
-          Super Mario World 9th Birthday Celebration
+          Super Mario World 9th Birthday Celebration (World 9-0)
         </p>
       </div>
 
@@ -295,10 +261,8 @@
           <div class="absolute -top-3 -left-3 text-yellow-400 text-xl sm:text-2xl drop-shadow-[0_2px_0_#000] animate-pulse">★</div>
           <div class="absolute -top-3 -right-3 text-yellow-400 text-xl sm:text-2xl drop-shadow-[0_2px_0_#000] animate-pulse">★</div>
 
-          <!-- Static Responsive Hero Photo Container -->
           <div class="relative w-full aspect-[4/3] bg-gradient-to-b from-sky-300 via-sky-400 to-sky-500 border-3 sm:border-4 border-black rounded-xl overflow-hidden flex items-center justify-center">
             
-            <!-- Default Elegant Star Motif Placeholder (shown when src is empty or broken) -->
             <div id="photo-star-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-gradient-to-b from-sky-400 via-sky-300 to-amber-100">
               <div class="w-16 h-16 sm:w-24 sm:h-24 mb-2 animate-star-glow">
                 <svg viewBox="0 0 100 100" class="w-full h-full filter drop-shadow-md">
@@ -313,20 +277,18 @@
               </div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- PHOTO INSTRUCTIONS: Add DeyDey's image URL or local photo path in src!   -->
-            <!-- Example: src="deydey.jpg" or src="images/deydey.png"                     -->
-            <!-- ========================================================================= -->
+            <!-- ================================================================= -->
+            <!-- LINE ~245: REPLACE src="" BELOW WITH DEYDEY'S PHOTO FILE PATH OR URL -->
+            <!-- Example: src="deydey.jpg" or src="images/deydey.png"              -->
+            <!-- ================================================================= -->
             <img id="deydeyPhoto" src="" alt="DeyDey 9th Birthday Photo" class="hero-photo w-full h-full object-cover relative z-10 hidden" onload="checkPhotoVisibility(this)" onerror="this.classList.add('hidden')" />
 
-            <!-- Mario Badge Overlay Accent -->
             <div class="absolute top-2 right-2 sm:top-3 sm:right-3 z-20 bg-red-600 border-2 border-black rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shadow-pixel">
               <span class="font-pixel text-white text-[10px] sm:text-xs font-bold">M</span>
             </div>
 
           </div>
 
-          <!-- Bottom Frame Caption -->
           <div class="mt-2.5 bg-black text-yellow-300 font-pixel text-[10px] sm:text-xs py-2 px-3 rounded-xl border-2 border-yellow-400 flex items-center justify-between shadow-pixel">
             <span>👑 SUPER DEYDEY</span>
             <span class="text-white text-[9px] sm:text-[10px] bg-red-600 px-2 py-0.5 rounded border border-white/40">LEVEL 9 UNLOCKED</span>
@@ -336,7 +298,6 @@
       </div>
 
       <div class="flex justify-center items-center space-x-2 sm:space-x-4 my-5 sm:my-6">
-        <!-- Question Block 1 -->
         <button onclick="hitQuestionBlock(this)" class="touch-target w-11 h-11 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-3 sm:border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group cursor-pointer shrink-0">
           <span class="font-pixel text-black text-lg sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
           <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
@@ -345,12 +306,10 @@
           <div class="absolute bottom-1 right-1 w-1 h-1 bg-black"></div>
         </button>
 
-        <!-- Main RSVP Primary Action Button -->
         <a href="#rsvp-section" onclick="playAudio('jump')" class="touch-target inline-flex items-center justify-center bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-base px-4 sm:px-6 py-3 sm:py-4 rounded-xl border-3 sm:border-4 border-black shadow-pixel-lg transform hover:-translate-y-0.5 active:translate-y-1 transition text-center uppercase tracking-wider cursor-pointer font-bold">
           🎮 PRESS START TO RSVP
         </a>
 
-        <!-- Question Block 2 -->
         <button onclick="hitQuestionBlock(this)" class="touch-target w-11 h-11 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600 border-3 sm:border-4 border-black rounded-lg shadow-pixel flex items-center justify-center relative active:translate-y-1 transition-transform group cursor-pointer shrink-0">
           <span class="font-pixel text-black text-lg sm:text-2xl font-bold group-hover:scale-110 transition-transform">?</span>
           <div class="absolute top-1 left-1 w-1 h-1 bg-black"></div>
@@ -360,7 +319,6 @@
         </button>
       </div>
 
-      <!-- DIRECT "WARP TO MAP" BUTTON FOR JOLLIBEE AGLIPAY -->
       <div class="text-center mb-6 sm:mb-8">
         <a href="https://maps.google.com/?cid=12370298415881579048" target="_blank" rel="noopener noreferrer" onclick="playAudio('warp')" class="touch-target inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-black font-pixel text-xs sm:text-sm px-4 sm:px-6 py-3 rounded-xl border-3 sm:border-4 border-black shadow-pixel transition transform hover:scale-105 active:scale-95 cursor-pointer font-bold">
           <span class="text-base sm:text-lg">🏰</span>
@@ -377,22 +335,18 @@
         </div>
 
         <div class="grid grid-cols-4 gap-1.5 sm:gap-4 max-w-lg mx-auto font-pixel">
-          <!-- Days -->
           <div class="bg-gray-900 border border-red-500 sm:border-2 rounded-lg p-1.5 sm:p-3">
             <div id="cd-days" class="text-base sm:text-3xl font-bold text-white">00</div>
             <div class="text-[8px] sm:text-xs text-red-400 mt-0.5">DAYS</div>
           </div>
-          <!-- Hours -->
           <div class="bg-gray-900 border border-yellow-500 sm:border-2 rounded-lg p-1.5 sm:p-3">
             <div id="cd-hours" class="text-base sm:text-3xl font-bold text-white">00</div>
             <div class="text-[8px] sm:text-xs text-yellow-400 mt-0.5">HOURS</div>
           </div>
-          <!-- Minutes -->
           <div class="bg-gray-900 border border-green-500 sm:border-2 rounded-lg p-1.5 sm:p-3">
             <div id="cd-mins" class="text-base sm:text-3xl font-bold text-white">00</div>
             <div class="text-[8px] sm:text-xs text-green-400 mt-0.5">MINS</div>
           </div>
-          <!-- Seconds -->
           <div class="bg-gray-900 border border-blue-500 sm:border-2 rounded-lg p-1.5 sm:p-3">
             <div id="cd-secs" class="text-base sm:text-3xl font-bold text-white">00</div>
             <div class="text-[8px] sm:text-xs text-blue-400 mt-0.5">SECS</div>
@@ -402,7 +356,6 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-8">
         
-        <!-- STAGE DATE -->
         <div class="bg-amber-50 border-3 border-black rounded-xl p-3.5 shadow-pixel flex items-start space-x-3">
           <div class="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-lg border-2 border-black flex items-center justify-center text-white shrink-0 shadow-pixel">
             <i class="fas fa-calendar-alt text-base sm:text-lg"></i>
@@ -414,7 +367,6 @@
           </div>
         </div>
 
-        <!-- WARP TIME -->
         <div class="bg-amber-50 border-3 border-black rounded-xl p-3.5 shadow-pixel flex items-start space-x-3">
           <div class="w-9 h-9 sm:w-10 sm:h-10 bg-yellow-400 rounded-lg border-2 border-black flex items-center justify-center text-black shrink-0 shadow-pixel">
             <i class="fas fa-clock text-base sm:text-lg"></i>
@@ -426,7 +378,6 @@
           </div>
         </div>
 
-        <!-- WORLD VENUE -->
         <div class="bg-amber-50 border-3 border-black rounded-xl p-3.5 shadow-pixel flex items-start space-x-3">
           <div class="w-9 h-9 sm:w-10 sm:h-10 bg-green-500 rounded-lg border-2 border-black flex items-center justify-center text-black shrink-0 shadow-pixel">
             <i class="fas fa-map-marker-alt text-base sm:text-lg"></i>
@@ -450,31 +401,28 @@
           <p class="text-slate-600 text-xs sm:text-sm mt-1">Confirm your attendance so we can reserve your party power-ups!</p>
         </div>
 
-        <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="max-w-xl mx-auto space-y-3.5 sm:space-y-4">
+        <form id="rsvp-form" onsubmit="initiateRSVPReview(event)" class="max-w-xl mx-auto space-y-3.5 sm:space-y-4">
           
-          <!-- Player Name Input -->
           <div>
             <label class="block font-pixel text-[10px] sm:text-xs text-slate-800 mb-1">PLAYER NAME / GAMERTAG *</label>
             <input type="text" id="player-name" required placeholder="e.g. Mario, Auntie Sarah, Cousin Jay" 
                    class="w-full min-h-[48px] px-3.5 py-2.5 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm text-sm" />
           </div>
 
-          <!-- Attendance Choice -->
           <div>
             <label class="block font-pixel text-[10px] sm:text-xs text-slate-800 mb-1">ATTENDANCE STATUS *</label>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div class="grid grid-cols-1 gap-2.5">
               <label class="touch-target border-3 border-black bg-white rounded-xl p-3 flex items-center space-x-2.5 cursor-pointer hover:bg-green-50 transition active:scale-98">
                 <input type="radio" name="attendance" value="Attending" checked class="w-5 h-5 text-green-600 accent-green-600 shrink-0" />
-                <span class="font-bold text-slate-900 text-xs sm:text-sm">🍄 Ready to Play! (YES)</span>
+                <span class="font-bold text-slate-900 text-xs sm:text-sm">🍄 READY TO PLAY! (YES)</span>
               </label>
               <label class="touch-target border-3 border-black bg-white rounded-xl p-3 flex items-center space-x-2.5 cursor-pointer hover:bg-red-50 transition active:scale-98">
                 <input type="radio" name="attendance" value="Declined" class="w-5 h-5 text-red-600 accent-red-600 shrink-0" />
-                <span class="font-bold text-slate-900 text-xs sm:text-sm">👾 Game Over (CAN'T MAKE IT)</span>
+                <span class="font-bold text-slate-900 text-xs sm:text-sm">👾 SORRY I CAN'T ATTEND, HAPPY BIRTHDAY STILL!</span>
               </label>
             </div>
           </div>
 
-          <!-- Number of Guests -->
           <div>
             <label class="block font-pixel text-[10px] sm:text-xs text-slate-800 mb-1">NUMBER OF PLAYERS (GUESTS)</label>
             <select id="guest-count" class="w-full min-h-[48px] px-3.5 py-2.5 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm bg-white text-sm">
@@ -485,20 +433,80 @@
             </select>
           </div>
 
-          <!-- Birthday Wish -->
           <div>
             <label class="block font-pixel text-[10px] sm:text-xs text-slate-800 mb-1">BIRTHDAY WISH FOR DEYDEY</label>
             <textarea id="birthday-wish" rows="3" placeholder="Leave a sweet or funny level 9 message for DeyDey..." 
                       class="w-full p-3 rounded-xl border-3 border-black font-semibold text-slate-900 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-sm text-sm"></textarea>
           </div>
 
-          <!-- Submit Button -->
           <button type="submit" class="touch-target w-full bg-yellow-400 hover:bg-yellow-300 text-black font-pixel text-xs sm:text-sm py-3.5 rounded-xl border-3 sm:border-4 border-black shadow-pixel-lg transition transform active:translate-y-1 flex items-center justify-center space-x-2 cursor-pointer font-bold">
-            <span>🚀 SUBMIT RSVP LEVEL DATA</span>
+            <span>📋 SUBMIT RSVP LEVEL DATA</span>
           </button>
 
         </form>
       </section>
+
+      <div id="review-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-4 border-black rounded-2xl p-5 sm:p-7 max-w-lg w-full text-left shadow-pixel-yellow relative my-auto max-h-[90vh] overflow-y-auto">
+          
+          <div class="text-center mb-4">
+            <div class="w-12 h-12 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-2xl mb-2 shadow-pixel">
+              📜
+            </div>
+            <h3 class="font-pixel text-sm sm:text-base text-slate-900 font-bold">CONFIRM RSVP DATA?</h3>
+            <p class="text-xs text-slate-600 mt-1">Are you sure you want to submit these details for DeyDey's party?</p>
+          </div>
+
+          <div id="duplicate-warning" class="hidden bg-amber-100 border-2 border-amber-500 text-amber-800 p-2.5 rounded-xl text-xs font-bold mb-3 flex items-start space-x-2">
+            <span class="text-base shrink-0">ℹ️</span>
+            <span>You have already submitted an RSVP with this name. Submitting will update your existing entry.</span>
+          </div>
+
+          <div class="bg-amber-50 border-3 border-black rounded-xl p-3.5 space-y-2 text-xs sm:text-sm font-semibold mb-5">
+            <div class="flex justify-between border-b border-amber-200 pb-1.5">
+              <span class="text-slate-500 font-pixel text-[10px]">GAMERTAG:</span>
+              <span id="review-name" class="font-bold text-slate-900"></span>
+            </div>
+            <div class="flex justify-between border-b border-amber-200 pb-1.5">
+              <span class="text-slate-500 font-pixel text-[10px]">ATTENDANCE:</span>
+              <span id="review-attendance" class="font-bold"></span>
+            </div>
+            <div class="flex justify-between border-b border-amber-200 pb-1.5">
+              <span class="text-slate-500 font-pixel text-[10px]">PLAYERS:</span>
+              <span id="review-guests" class="font-bold text-slate-900"></span>
+            </div>
+            <div>
+              <span class="text-slate-500 font-pixel text-[10px] block mb-1">MESSAGE / WISH:</span>
+              <p id="review-wish" class="text-slate-800 italic bg-white p-2 rounded-lg border border-slate-300 font-normal"></p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <button onclick="closeReviewModal()" class="touch-target bg-gray-200 hover:bg-gray-300 text-slate-800 font-pixel text-[10px] sm:text-xs py-3 px-3 rounded-xl border-3 border-black shadow-pixel uppercase cursor-pointer font-bold">
+              ✏️ NO, EDIT
+            </button>
+            <button onclick="confirmAndSaveRSVP()" class="touch-target bg-green-500 hover:bg-green-400 text-black font-pixel text-[10px] sm:text-xs py-3 px-3 rounded-xl border-3 border-black shadow-pixel uppercase cursor-pointer font-bold">
+              🚀 YES, CONFIRM!
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="rsvp-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-4 border-black rounded-2xl p-5 sm:p-8 max-w-md w-full text-center shadow-pixel-yellow relative">
+          <div id="rsvp-modal-icon" class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel">
+            👑
+          </div>
+          <h3 id="rsvp-modal-title" class="font-pixel text-base sm:text-xl text-red-600 mb-2">STAGE CLEAR!</h3>
+          <p id="rsvp-modal-text" class="text-slate-800 font-bold text-xs sm:text-base mb-5">
+            Thank you! Your RSVP has been saved for DeyDey's party.
+          </p>
+          <button onclick="closeRSVPModal()" class="touch-target w-full bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-sm py-3 rounded-xl border-3 border-black shadow-pixel uppercase cursor-pointer font-bold">
+            CONTINUE GAME 🎮
+          </button>
+        </div>
+      </div>
 
       <section class="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t-4 border-black">
         <div class="text-center mb-5">
@@ -510,7 +518,6 @@
           <p class="text-slate-600 text-xs mt-1">See messages left by DeyDey's party friends!</p>
         </div>
 
-        <!-- Dynamic Guest Counter Bar (Initial zero state) -->
         <div id="guest-counter-bar" class="max-w-lg mx-auto mb-5 bg-black text-white border-2 sm:border-3 border-yellow-400 rounded-xl p-2.5 sm:p-3 flex justify-around items-center font-pixel text-[10px] sm:text-xs shadow-pixel">
           <div class="text-center">
             <span class="block text-green-400 text-base sm:text-lg font-bold" id="stat-attending">0</span>
@@ -529,30 +536,13 @@
         </div>
 
         <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          <!-- Wishes rendered dynamically from clean localStorage -->
         </div>
       </section>
 
     </div>
   </main>
 
-  <div id="rsvp-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border-4 border-black rounded-2xl p-5 sm:p-8 max-w-md w-full text-center shadow-pixel-yellow relative">
-      <div id="rsvp-modal-icon" class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel">
-        👑
-      </div>
-      <h3 id="rsvp-modal-title" class="font-pixel text-base sm:text-xl text-red-600 mb-2">STAGE CLEAR!</h3>
-      <p id="rsvp-modal-text" class="text-slate-800 font-bold text-xs sm:text-base mb-5">
-        Thank you! Your RSVP has been saved for DeyDey's party.
-      </p>
-      <button onclick="closeRSVPModal()" class="touch-target w-full bg-red-600 hover:bg-red-500 text-white font-pixel text-xs sm:text-sm py-3 rounded-xl border-3 border-black shadow-pixel uppercase cursor-pointer font-bold">
-        CONTINUE GAME 🎮
-      </button>
-    </div>
-  </div>
-
   <footer class="relative z-10 bg-amber-800 border-t-4 border-black text-white py-5 px-3 text-center mt-10">
-    <!-- Brick pattern top accent -->
     <div class="absolute -top-4 left-0 right-0 h-4 bg-repeat-x flex justify-around opacity-90" style="background-image: linear-gradient(90deg, #d04810 0%, #d04810 50%, #000 50%, #000 100%); background-size: 20px 100%;"></div>
 
     <div class="max-w-4xl mx-auto font-pixel text-[10px] sm:text-xs space-y-1.5">
@@ -562,7 +552,6 @@
   </footer>
 
   <script>
-    /* Pure Web Audio API Chiptune SFX Engine */
     let audioCtx = null;
     let isSoundOn = true;
     let coinScore = 0;
@@ -604,8 +593,8 @@
         const gain1 = audioCtx.createGain();
         osc1.type = 'square';
         
-        osc1.frequency.setValueAtTime(987.77, now); // B5
-        osc1.frequency.setValueAtTime(1318.51, now + 0.08); // E6
+        osc1.frequency.setValueAtTime(987.77, now);
+        osc1.frequency.setValueAtTime(1318.51, now + 0.08);
         
         gain1.gain.setValueAtTime(0.15, now);
         gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
@@ -698,16 +687,133 @@
       }
     }
 
-    function checkPhotoVisibility(img) {
-      if (img.getAttribute('src') && img.getAttribute('src').trim() !== "") {
-        img.classList.remove('hidden');
-      } else {
-        img.classList.add('hidden');
-      }
+    function hitQuestionBlock(btn) {
+      playAudio('coin');
+      coinScore += 1;
+      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
+
+      const rect = btn.getBoundingClientRect();
+      const popup = document.createElement('div');
+      popup.className = 'popup-coin font-pixel text-yellow-400 text-xs font-bold drop-shadow-[0_2px_0_#000]';
+      popup.innerText = '+100 🪙';
+      popup.style.left = `${rect.left + window.scrollX + 5}px`;
+      popup.style.top = `${rect.top + window.scrollY - 10}px`;
+      document.body.appendChild(popup);
+
+      setTimeout(() => popup.remove(), 800);
     }
 
-    /* FRESH CLEAN LOCALSTORAGE KEY FOR V3 ZERO RESET */
-    const LOCAL_STORAGE_KEY = 'deydey_mario_rsvp_v3';
+    function triggerCoinClick(e) {
+      playAudio('coin');
+      coinScore += 1;
+      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
+    }
+
+    let currentPendingRSVP = null;
+
+    function initiateRSVPReview(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('player-name').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked').value;
+      const guests = document.getElementById('guest-count').value;
+      const wish = document.getElementById('birthday-wish').value.trim();
+
+      if (!name) return;
+
+      currentPendingRSVP = {
+        name: name,
+        attendance: attendance,
+        guests: guests,
+        wish: wish,
+        timestamp: new Date().toISOString()
+      };
+
+      // Populate review modal details
+      document.getElementById('review-name').innerText = name;
+      const attElem = document.getElementById('review-attendance');
+      if (attendance === 'Attending') {
+        attElem.innerText = '🍄 READY TO PLAY! (YES)';
+        attElem.className = 'font-bold text-green-600';
+      } else {
+        attElem.innerText = "👾 SORRY I CAN'T ATTEND, HAPPY BIRTHDAY STILL!";
+        attElem.className = 'font-bold text-red-600';
+      }
+
+      document.getElementById('review-guests').innerText = `${guests} Player(s)`;
+      
+      const defaultWishText = attendance === 'Attending' 
+        ? 'Can\'t wait for DeyDey\'s 9th Birthday!' 
+        : 'Sorry I can\'t attend, Happy Birthday still, DeyDey!';
+
+      document.getElementById('review-wish').innerText = wish ? `"${wish}"` : `"${defaultWishText}"`;
+
+      // Check for duplicate name in stored RSVPs
+      const existing = getStoredRSVPs();
+      const duplicateWarning = document.getElementById('duplicate-warning');
+      const isDuplicate = existing.some(item => item.name.toLowerCase() === name.toLowerCase());
+
+      if (isDuplicate) {
+        duplicateWarning.classList.remove('hidden');
+      } else {
+        duplicateWarning.classList.add('hidden');
+      }
+
+      playAudio('jump');
+      document.getElementById('review-modal').classList.remove('hidden');
+    }
+
+    function closeReviewModal() {
+      playAudio('coin');
+      document.getElementById('review-modal').classList.add('hidden');
+    }
+
+    function confirmAndSaveRSVP() {
+      if (!currentPendingRSVP) return;
+
+      closeReviewModal();
+      saveRSVP(currentPendingRSVP);
+
+      const isAttending = currentPendingRSVP.attendance === 'Attending';
+      const name = currentPendingRSVP.name;
+
+      if (isAttending) {
+        playAudio('1up');
+      } else {
+        playAudio('gameover');
+      }
+
+      const modalIcon = document.getElementById('rsvp-modal-icon');
+      const modalTitle = document.getElementById('rsvp-modal-title');
+      const modalText = document.getElementById('rsvp-modal-text');
+
+      if (isAttending) {
+        modalIcon.innerHTML = '🏆';
+        modalIcon.className = 'w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel';
+        modalTitle.innerText = 'STAGE CLEAR! QUEST ACCEPTED';
+        modalTitle.className = 'font-pixel text-base sm:text-xl text-green-600 mb-2';
+        modalText.innerText = `WOOHOO ${name.toUpperCase()}! You are registered for DeyDey's World 9-0 Birthday Quest. Get ready for power-ups!`;
+      } else {
+        modalIcon.innerHTML = '👾';
+        modalIcon.className = 'w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-red-200 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel';
+        modalTitle.innerText = 'MESSAGE RECEIVED!';
+        modalTitle.className = 'font-pixel text-base sm:text-xl text-red-600 mb-2';
+        modalText.innerText = `Thank you for sending your birthday wishes, ${name}! DeyDey appreciates your support!`;
+      }
+
+      // Reset main form
+      document.getElementById('rsvp-form').reset();
+      currentPendingRSVP = null;
+
+      document.getElementById('rsvp-modal').classList.remove('hidden');
+    }
+
+    function closeRSVPModal() {
+      playAudio('coin');
+      document.getElementById('rsvp-modal').classList.add('hidden');
+    }
+
+    const LOCAL_STORAGE_KEY = 'deydey_mario_rsvp_v6';
     const defaultRSVPs = [];
 
     function getStoredRSVPs() {
@@ -723,9 +829,13 @@
       }
     }
 
-    function saveRSVP(rsvp) {
-      const rsvps = getStoredRSVPs();
-      rsvps.unshift(rsvp);
+    function saveRSVP(newRsvp) {
+      let rsvps = getStoredRSVPs();
+      
+      // Update if name matches, otherwise prepend
+      rsvps = rsvps.filter(item => item.name.toLowerCase() !== newRsvp.name.toLowerCase());
+      
+      rsvps.unshift(newRsvp);
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(rsvps));
       renderWishesAndStats();
     }
@@ -745,8 +855,8 @@
         container.innerHTML = `
           <div class="col-span-1 sm:col-span-2 bg-amber-50 border-3 border-dashed border-slate-400 rounded-xl p-6 text-center shadow-sm">
             <div class="text-2xl mb-1 animate-bounce">🍄</div>
-            <p class="font-pixel text-slate-800 text-xs font-bold">NO RSVPS SUBMITTED YET</p>
-            <p class="text-slate-600 text-xs mt-1">Be the first player to join DeyDey's party crew!</p>
+            <p class="font-pixel text-slate-800 text-xs font-bold">NO RSVPS SUBMITTED YET. BE THE FIRST PLAYER TO JOIN!</p>
+            <p class="text-slate-600 text-xs mt-1">Submit your RSVP above to appear on the party board!</p>
           </div>
         `;
       } else {
@@ -765,37 +875,50 @@
           card.className = "bg-amber-50 border-3 border-black rounded-xl p-3.5 shadow-pixel relative transition-all hover:-translate-y-0.5";
           
           const badgeBg = isAttending ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800';
-          const badgeText = isAttending ? `READY (${item.guests} P)` : 'DECLINED';
+          const badgeText = isAttending ? `READY (${item.guests} P)` : "SORRY I CAN'T ATTEND, HAPPY BIRTHDAY STILL!";
           const avatarLetter = item.name ? item.name.charAt(0).toUpperCase() : '★';
           const avatarBg = isAttending ? 'bg-red-600 text-white' : 'bg-gray-700 text-white';
 
+          const defaultMsg = isAttending 
+            ? 'Can\'t wait for DeyDey\'s 9th Birthday!' 
+            : 'Sorry I can\'t attend, Happy Birthday still, DeyDey!';
+
+          const displayWish = item.wish && item.wish.trim() ? item.wish : defaultMsg;
+
           card.innerHTML = `
-            <div class="flex items-center space-x-2 mb-1.5">
-              <div class="w-6 h-6 ${avatarBg} font-pixel text-[9px] rounded-full flex items-center justify-center border border-black font-bold shrink-0">${escapeHTML(avatarLetter)}</div>
-              <span class="font-bold text-slate-900 text-xs sm:text-sm truncate">${escapeHTML(item.name)}</span>
-              <span class="text-[9px] ${badgeBg} font-pixel px-1.5 py-0.5 rounded ml-auto shrink-0">${badgeText}</span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2 border-b border-amber-200 pb-2">
+              <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 ${avatarBg} font-pixel text-[9px] rounded-full flex items-center justify-center border border-black font-bold shrink-0">${escapeHTML(avatarLetter)}</div>
+                <span class="font-bold text-slate-900 text-xs sm:text-sm truncate">${escapeHTML(item.name)}</span>
+              </div>
+              <span class="text-[8px] sm:text-[9px] ${badgeBg} font-pixel px-2 py-0.5 rounded border border-black/20 self-start sm:self-auto uppercase tracking-tighter">${badgeText}</span>
             </div>
-            <p class="text-xs text-slate-700 italic leading-relaxed">"${escapeHTML(item.wish || 'Can\'t wait for DeyDey\'s 9th Birthday!')}"</p>
+            <p class="text-xs text-slate-700 italic leading-relaxed">"${escapeHTML(displayWish)}"</p>
           `;
 
           container.appendChild(card);
         });
       }
 
-      /* Update dashboard counters */
       document.getElementById('stat-attending').innerText = totalAttendingCount;
       document.getElementById('stat-total-guests').innerText = totalGuestsCount;
       document.getElementById('stat-declined').innerText = totalDeclinedCount;
     }
 
-    /* Initialize photo check and stats on DOM load */
+    function checkPhotoVisibility(img) {
+      if (img.getAttribute('src') && img.getAttribute('src').trim() !== "") {
+        img.classList.remove('hidden');
+      } else {
+        img.classList.add('hidden');
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const img = document.getElementById('deydeyPhoto');
       checkPhotoVisibility(img);
       renderWishesAndStats();
     });
 
-    /* Live Countdown Clock Logic (Target: October 18, 3:00 PM) */
     const targetDate = new Date("2026-10-18T15:00:00+08:00").getTime();
 
     function updateCountdown() {
@@ -823,85 +946,6 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    /* Question Block Tap Interaction */
-    function hitQuestionBlock(btn) {
-      playAudio('coin');
-      coinScore += 1;
-      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
-
-      const rect = btn.getBoundingClientRect();
-      const popup = document.createElement('div');
-      popup.className = 'popup-coin font-pixel text-yellow-400 text-xs font-bold drop-shadow-[0_2px_0_#000]';
-      popup.innerText = '+100 🪙';
-      popup.style.left = `${rect.left + window.scrollX + 5}px`;
-      popup.style.top = `${rect.top + window.scrollY - 10}px`;
-      document.body.appendChild(popup);
-
-      setTimeout(() => popup.remove(), 800);
-    }
-
-    function triggerCoinClick(e) {
-      playAudio('coin');
-      coinScore += 1;
-      document.getElementById('coin-count').innerText = `x${coinScore < 10 ? '0' + coinScore : coinScore}`;
-    }
-
-    /* RSVP Submission Handler */
-    function handleRSVPSubmit(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('player-name').value.trim();
-      const attendance = document.querySelector('input[name="attendance"]:checked').value;
-      const guests = document.getElementById('guest-count').value;
-      const wish = document.getElementById('birthday-wish').value.trim();
-
-      if (!name) return;
-
-      const isAttending = attendance === 'Attending';
-
-      if (isAttending) {
-        playAudio('1up');
-      } else {
-        playAudio('gameover');
-      }
-
-      const rsvp = {
-        name: name,
-        attendance: attendance,
-        guests: guests,
-        wish: wish,
-        timestamp: new Date().toISOString()
-      };
-
-      saveRSVP(rsvp);
-
-      const modalIcon = document.getElementById('rsvp-modal-icon');
-      const modalTitle = document.getElementById('rsvp-modal-title');
-      const modalText = document.getElementById('rsvp-modal-text');
-
-      if (isAttending) {
-        modalIcon.innerHTML = '🏆';
-        modalIcon.className = 'w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-yellow-400 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel';
-        modalTitle.innerText = 'STAGE CLEAR! QUEST ACCEPTED';
-        modalTitle.className = 'font-pixel text-base sm:text-xl text-green-600 mb-2';
-        modalText.innerText = `WOOHOO ${name.toUpperCase()}! You are registered for DeyDey's World 9-0 Birthday Quest. Get ready for power-ups!`;
-      } else {
-        modalIcon.innerHTML = '👾';
-        modalIcon.className = 'w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-red-200 border-3 border-black rounded-full flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-pixel';
-        modalTitle.innerText = 'GAME OVER! QUEST DECLINED';
-        modalTitle.className = 'font-pixel text-base sm:text-xl text-red-600 mb-2';
-        modalText.innerText = `Thanks for letting us know, ${name}. We'll miss you at DeyDey's 9th Birthday!`;
-      }
-
-      document.getElementById('rsvp-form').reset();
-      document.getElementById('rsvp-modal').classList.remove('hidden');
-    }
-
-    function closeRSVPModal() {
-      playAudio('coin');
-      document.getElementById('rsvp-modal').classList.add('hidden');
-    }
 
     function escapeHTML(str) {
       return str.replace(/[&<>'"]/g, 
